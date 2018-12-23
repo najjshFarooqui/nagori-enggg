@@ -22,8 +22,13 @@ public interface ItemDao {
     @Query("select max(id) from Item limit 1 ")
     int getMaxId();
 
+/*
+    @Query("select telPartNumber, oem, mrp, engine ,application from item")
+          void details();
+*/
+
     @Query("select distinct oem from item ")
-    List<Item> distOem();
+    List<String> distOem();
 
     @Query("select * from Item where id =:sId ")
     Item get(int sId);

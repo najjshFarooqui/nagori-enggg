@@ -9,13 +9,26 @@
         android:orientation="vertical"
         tools:context=".MainActivity">
 
+        <ScrollView
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:scrollbars="none"
+            android:layout_weight="1">
+        <HorizontalScrollView
+            android:id="@+id/horizontalView"
+            android:layout_height="wrap_content"
+            android:scrollbars="horizontal|vertical"
+            android:layout_width="wrap_content">
+
         <TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
             android:stretchColumns="0,1"
-            android:id="@+id/main_table"
+            android:id="@+id/tableLayout"
             android:layout_weight="1"
             android:layout_height="wrap_content"
             android:layout_width="match_parent">
         </TableLayout>
+        </HorizontalScrollView>
+        </ScrollView>
 
     </LinearLayout>
 </layout>

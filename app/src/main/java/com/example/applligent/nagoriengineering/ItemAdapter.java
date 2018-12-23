@@ -15,18 +15,18 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ItemHolder> implements Filterable {
-    List<Item> items;
-    List<Item> itemsFull;
+    List<String> items;
+    List<String> itemsFull;
     private Filter itemFilter = new Filter() {
         @Override
         protected FilterResults performFiltering(CharSequence constraint) {
-            List<Item> filteredList = new ArrayList<>();
+            List<String> filteredList = new ArrayList<>();
             if (constraint == null || constraint.length() == 0) {
                 filteredList.addAll(itemsFull);
             } else {
                 String filterPattern = constraint.toString().toLowerCase().trim();
-                for (Item searchItem : itemsFull) {
-                    if (searchItem.oem.toLowerCase().contains(filterPattern)) {
+                for (String searchItem : itemsFull) {
+                    if (searchItem.toLowerCase().contains(filterPattern)) {
                         filteredList.add(searchItem);
                     }
                 }
@@ -45,7 +45,7 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ItemHolder> im
         }
     };
 
-    public ItemAdapter(List<Item> items) {
+    public ItemAdapter(List<String> items) {
         this.items = items;
         itemsFull = new ArrayList<>(items);
     }
@@ -86,17 +86,17 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ItemHolder> im
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Item item = items.get(getAdapterPosition());
+                    String item = items.get(getAdapterPosition());
                     Intent intent = new Intent(itemView.getContext(), CompanyDetailsActivity.class);
-                    intent.putExtra("oem", item.id);
+                    intent.putExtra("oem", item);
                     itemView.getContext().startActivity(intent);
                 }
             });
         }
 
-        protected void bindTo(Item items) {
+        protected void bindTo(String items) {
 
-            companyName.setText(items.oem);
+            companyName.setText(items);
         }
     }
 }

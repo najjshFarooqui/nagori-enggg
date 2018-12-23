@@ -25,19 +25,16 @@ public class PartsInfoActivity extends AppCompatActivity {
     TableLayout tableLayout;
     DrawerLayout drawerLayout;
 
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_parts_info);
         itemDao = MyNagoriApplication.getDatabase().itemDao();
         binding = DataBindingUtil.setContentView(this, R.layout.activity_parts_info);
         partsId = getIntent().getIntExtra("parts_info", -1);
         item = itemDao.get(partsId);
-        binding.setItem(item);
+        //binding.setItem(subItem);
 
-        tableLayout=(TableLayout)findViewById(R.id.table);
+        tableLayout=(TableLayout)findViewById(R.id.tableLayout);
 
 
         TableRow info = new TableRow(this);
@@ -87,6 +84,6 @@ public class PartsInfoActivity extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
         item = itemDao.get(partsId);
-        binding.setItem(item);
+        //binding.setItem(subItem);
     }
 }

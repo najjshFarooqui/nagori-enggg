@@ -34,7 +34,7 @@ public class CompanyListActivity extends AppCompatActivity {
         itemDao = MyNagoriApplication.getDatabase().itemDao();
         recyclerView = (RecyclerView) findViewById(R.id.recyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        List<Item> companyList = itemDao.distOem();
+        List<String> companyList = itemDao.distOem();
         adapter = new ItemAdapter(companyList);
         recyclerView.setAdapter(adapter);
 

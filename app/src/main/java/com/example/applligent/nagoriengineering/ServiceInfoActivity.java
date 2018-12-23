@@ -8,6 +8,7 @@ import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
+import android.view.Gravity;
 import android.view.MenuItem;
 import android.widget.TableLayout;
 import android.widget.TableRow;
@@ -26,19 +27,14 @@ public class ServiceInfoActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_service_info);
         itemDao = MyNagoriApplication.getDatabase().itemDao();
-        binding = DataBindingUtil.setContentView(this, R.layout.activity_parts_info);
+        binding = DataBindingUtil.setContentView(this, R.layout.activity_service_info);
         partsId = getIntent().getIntExtra("parts_info", -1);
+
+        TextView tcPartNo= new TextView(this);
+        tcPartNo.setText("TC PART NO.");
+        tcPartNo.setGravity(Gravity.CENTER_HORIZONTAL);
         //Table code
-        tableLayout=(TableLayout)findViewById(R.id.table);
-        TableRow data = new TableRow(this);
-        data.setBackgroundColor(Color.GRAY);
-        data.setLayoutParams(new TableRow.LayoutParams(
-                TableRow.LayoutParams.FILL_PARENT,
-                TableRow.LayoutParams.WRAP_CONTENT));
-        TextView textView = new TextView(this);
-        textView.setText();
 
 
 
@@ -74,6 +70,6 @@ public class ServiceInfoActivity extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
         item = itemDao.get(partsId);
-        binding.setItem(item);
+        //binding.setItem(subItem);
     }
 }

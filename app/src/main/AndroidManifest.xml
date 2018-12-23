@@ -24,7 +24,9 @@
         <activity android:name=".HomeActivity" />
         <activity android:name=".PartsInfoActivity" />
         <activity android:name=".ServiceInfoActivity" />
-        <activity android:name=".CompanyDetailsActivity"></activity>
+        <activity
+            android:name=".CompanyDetailsActivity"
+            android:screenOrientation="landscape" />
     </application>
 
 </manifest>
