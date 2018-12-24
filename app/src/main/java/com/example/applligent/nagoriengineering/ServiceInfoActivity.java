@@ -10,6 +10,7 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Gravity;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
@@ -22,7 +23,7 @@ public class ServiceInfoActivity extends AppCompatActivity {
     ItemDao itemDao;
     ActivityServiceInfoBinding binding;
     Item item;
-    TableLayout tableLayout;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,46 +31,24 @@ public class ServiceInfoActivity extends AppCompatActivity {
         itemDao = MyNagoriApplication.getDatabase().itemDao();
         binding = DataBindingUtil.setContentView(this, R.layout.activity_service_info);
         partsId = getIntent().getIntExtra("parts_info", -1);
+        item=itemDao.get(partsId);
+        binding.tcPartLabel.setText(item.telPartNumber);
+        binding.alphaLabel.setText(item.orientationAlpha);
+        binding.betaLabel.setText(item.orientationBeta);
+        binding.strokingPrLabel.setText(item.strPre);
+        binding.settingPrLabel.setText(item.settingPre);
+        binding.liftLabel.setText(item.lift);
+        binding.remarksLabel.setText(item.reman);
 
-        TextView tcPartNo= new TextView(this);
-        tcPartNo.setText("TC PART NO.");
-        tcPartNo.setGravity(Gravity.CENTER_HORIZONTAL);
-        //Table code
-
-
-
-        //drawer code
-        NavigationView navigationView = findViewById(R.id.nav_view);
-        navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
+        binding.button.setOnClickListener(new View.OnClickListener() {
             @Override
-            public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
-                menuItem.setChecked(true);
-                drawerLayout.closeDrawers();
-                if (menuItem.getItemId() == R.id.nav_home) {
-                    Intent intent = new Intent(getApplicationContext(), CompanyListActivity.class);
-                    startActivity(intent);
-                } else if (menuItem.getItemId() == R.id.nav_copyright) {
-                    Intent intent = new Intent(getApplicationContext(), Copyright.class);
-                    startActivity(intent);
-                } else if (menuItem.getItemId() == R.id.nav_about) {
-                    Intent intent = new Intent(getApplicationContext(), About.class);
-                    startActivity(intent);
-                } else if (menuItem.getItemId() == R.id.nav_exit) {
-                    Intent intent = new Intent(Intent.ACTION_MAIN);
-                    intent.addCategory(Intent.CATEGORY_HOME);
-                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                    startActivity(intent);
-                }
-                return true;
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(),PartsInfoActivity.class);
+                intent.putExtra("tep_part_number", item.telPartNumber);
+                startActivity(intent);
+
             }
         });
+        }
 
-    }
-
-    @Override
-    protected void onResume() {
-        super.onResume();
-        item = itemDao.get(partsId);
-        //binding.setItem(subItem);
-    }
 }

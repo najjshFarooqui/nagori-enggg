@@ -3,94 +3,235 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
-    <android.support.v4.widget.DrawerLayout
-        android:id="@+id/drawer_layout"
+
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:fitsSystemWindows="true">
+        android:orientation="vertical">
 
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical">
-
-            <TextView
-                android:id="@+id/tcPart"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="TC PART NO. :"
-                android:textSize="24sp" />
-
-            <TextView
-                android:id="@+id/tcPartId"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignBottom="@+id/tcPart"
-                android:layout_alignParentEnd="true"
-                android:layout_marginEnd="64dp"
-                android:hint="tc part no."
-                android:textSize="24sp" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentTop="true"
-                android:layout_centerHorizontal="true"
-                android:layout_marginTop="72dp"
-                android:text="Orientation"
-                android:textSize="24sp" />
-
-        </RelativeLayout>
-
-        <LinearLayout
+        <TextView
+            android:id="@+id/tcPart"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:layout_alignStart="@+id/textView9"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="7dp"
+            android:text="TC PART NO. :"
+            android:textSize="18sp" />
 
-            <TableLayout
-                android:id="@+id/tableLayout"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
 
-                <TableRow
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="ALPHA" />
-
-                    <TextView
-                        android:id="@+id/alphaText"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content" />
-                </TableRow>
-
-                <TableRow
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="BETA" />
-
-                    <TextView
-                        android:id="@+id/betaText"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content" />
-                </TableRow>
-            </TableLayout>
-
-        </LinearLayout>
-
-        <android.support.design.widget.NavigationView
-            android:id="@+id/nav_view"
+        <TextView
             android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_gravity="start"
-            android:fitsSystemWindows="true"
-            app:headerLayout="@layout/nav_header"
-            app:menu="@menu/drawer_view" />
-    </android.support.v4.widget.DrawerLayout>
-</layout>
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="54dp"
+            android:text="Orientation"
+            android:textSize="24sp" />
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="40dp"
+            android:layout_marginTop="91dp"
+            android:textSize="24sp"
+            tools:text="Alpha " />
+
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/textView"
+            android:layout_marginStart="0dp"
+            android:layout_marginBottom="-1dp"
+            android:layout_toEndOf="@+id/textView"
+            android:text="(in degree)" />
+
+        <TextView
+            android:id="@+id/alphaLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginTop="95dp"
+            android:layout_marginEnd="81dp"
+            android:textSize="24sp" />
+
+        <TextView
+            android:id="@+id/textView4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignEnd="@+id/textView"
+            android:layout_alignParentBottom="true"
+            android:layout_marginEnd="15dp"
+            android:layout_marginBottom="316dp"
+            android:text="Beta"
+            android:textSize="24sp" />
+
+        <TextView
+            android:id="@+id/textView5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/textView4"
+            android:layout_alignParentStart="true"
+            android:layout_marginStart="97dp"
+            android:layout_marginBottom="1dp"
+            android:text="(in degree)" />
+
+        <TextView
+            android:id="@+id/betaLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@+id/textView5"
+            android:layout_alignParentEnd="true"
+            android:layout_marginEnd="49dp" />
+
+
+
+        <TextView
+            android:id="@+id/textView6"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignStart="@+id/tcPart"
+            android:layout_alignParentBottom="true"
+            android:layout_marginStart="25dp"
+            android:layout_marginBottom="293dp"
+            android:gravity="center_horizontal"
+            android:text="Actuator Setting" />
+
+
+        <TextView
+            android:id="@+id/textView8"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignEnd="@+id/textView"
+            android:layout_alignParentBottom="true"
+            android:layout_marginEnd="6dp"
+            android:layout_marginBottom="267dp"
+            android:text="Stroking pr" />
+
+        <TextView
+            android:id="@+id/textView9"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@+id/textView8"
+            android:layout_alignEnd="@+id/textView2"
+            android:layout_marginTop="1dp"
+            android:layout_marginEnd="26dp"
+            android:text="(in br)" />
+
+        <TextView
+            android:id="@+id/strokingPrLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@+id/textView8"
+            android:layout_marginStart="-1dp"
+            android:layout_toEndOf="@+id/tcPart"
+            android:text="TextView" />
+
+        <TextView
+            android:id="@+id/textView10"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignStart="@+id/textView4"
+            android:layout_alignParentBottom="true"
+            android:layout_marginStart="-4dp"
+            android:layout_marginBottom="215dp"
+            android:text="Setting pr" />
+
+        <TextView
+            android:id="@+id/textView11"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/textView10"
+            android:layout_marginStart="-5dp"
+            android:layout_marginBottom="0dp"
+            android:layout_toEndOf="@+id/textView"
+            android:text="(in br)" />
+
+        <TextView
+            android:id="@+id/settingPrLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginEnd="72dp"
+            android:layout_marginBottom="206dp"
+            android:text="TextView" />
+
+        <TextView
+            android:id="@+id/textView12"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignStart="@+id/textView4"
+            android:layout_alignParentBottom="true"
+            android:layout_marginStart="-4dp"
+            android:layout_marginBottom="165dp"
+            android:text="Lift" />
+
+        <TextView
+            android:id="@+id/textView13"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignStart="@+id/textView5"
+            android:layout_alignBottom="@+id/textView12"
+            android:layout_marginStart="-4dp"
+            android:layout_marginBottom="0dp"
+            android:text="(in mm)" />
+
+        <TextView
+            android:id="@+id/textView14"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignStart="@+id/textView4"
+            android:layout_alignParentBottom="true"
+            android:layout_marginStart="-4dp"
+            android:layout_marginBottom="129dp"
+            android:text="Remarks" />
+
+        <Button
+            android:id="@+id/button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/textView14"
+            android:layout_marginStart="-22dp"
+            android:layout_marginBottom="-73dp"
+            android:layout_toEndOf="@+id/textView11"
+            android:text="More" />
+
+        <TextView
+            android:id="@+id/liftLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginEnd="68dp"
+            android:layout_marginBottom="160dp"
+            android:text="TextView" />
+
+        <TextView
+            android:id="@+id/tcPartLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginTop="12dp"
+            android:layout_marginEnd="72dp"
+            android:text="TextView" />
+
+        <TextView
+            android:id="@+id/remarksLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@+id/textView14"
+            android:layout_alignEnd="@+id/settingPrLabel"
+            android:text="TextView" />
+
+
+    </RelativeLayout>
+
+       </layout>

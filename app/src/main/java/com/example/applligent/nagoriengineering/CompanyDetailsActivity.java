@@ -16,7 +16,6 @@ import com.example.applligent.nagoriengineering.databinding.ActivityCompanyDetai
 import java.util.List;
 
 public class CompanyDetailsActivity extends AppCompatActivity {
-    Item item;
     ItemDao itemDao;
     ActivityCompanyDetailsBinding binding;
     String oem;
@@ -64,9 +63,12 @@ public class CompanyDetailsActivity extends AppCompatActivity {
             row.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    item=new Item();
+
                     Intent intent = new Intent(getApplicationContext(),DetailsActivity.class);
-                    intent.putExtra("tel_part_number", item.telPartNumber);
+                    //intent.putExtra("tel_part_number", itemList.get(v.getId()).telPartNumber);
+                    int rowId = v.getId();
+                    Item item = itemList.get(rowId);
+                    intent.putExtra("item_id", item.id);
                     startActivity(intent);
                 }
             });
@@ -117,5 +119,7 @@ public class CompanyDetailsActivity extends AppCompatActivity {
 
 
     }
+
+
 
 }

@@ -1,13 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout>
 
-    <data>
-
-        <variable
-            name="subItem"
-            type="com.example.applligent.nagoriengineering.SubItem" />
-    </data>
-
     <android.support.v4.widget.DrawerLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -38,14 +31,14 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="TEL PART Number"
-                        android:textSize="16sp" />
+                        android:textSize="18sp" />
 
                     <TextView
+                        android:id="@+id/telPartLabel"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="80dp"
-                        android:text="@{subItem.telPartNumber}"
-                        android:textSize="16sp" />
+                        android:textSize="18sp" />
                 </TableRow>
 
                 <TableRow android:layout_marginTop="4dp">
@@ -54,14 +47,14 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="OEM PART NO"
-                        android:textSize="16sp" />
+                        android:textSize="18sp" />
 
                     <TextView
+                        android:id="@+id/oemPartLabel"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="80dp"
-                        android:text="@{subItem.partNumber}"
-                        android:textSize="16sp" />
+                        android:textSize="18sp" />
                 </TableRow>
 
 
@@ -71,14 +64,14 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Engine"
-                        android:textSize="16sp" />
+                        android:textSize="18sp" />
 
                     <TextView
+                        android:id="@+id/engineLabel"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="80dp"
-                        android:text="@{subItem.engine}"
-                        android:textSize="16sp" />
+                        android:textSize="18sp" />
                 </TableRow>
 
 
@@ -88,13 +81,14 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Application"
-                        android:textSize="16sp" />
+                        android:textSize="18sp" />
 
                     <TextView
+                        android:id="@+id/applicationLabel"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="80dp"
-                        android:textSize="16sp" />
+                        android:textSize="18sp" />
                 </TableRow>
 
 
@@ -107,12 +101,11 @@
                         android:textSize="16sp" />
 
                     <TextView
-                        android:id="@+id/mrpTextView"
+                        android:id="@+id/mrpLabel"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="80dp"
-                        android:text="@{``+subItem.mrp}"
-                        android:textSize="16sp" />
+                        android:textSize="18sp" />
                 </TableRow>
 
 
@@ -137,15 +130,6 @@
                 android:layout_marginTop="224dp"
                 android:text=" parts info" />
         </RelativeLayout>
-
-        <android.support.design.widget.NavigationView
-            android:id="@+id/nav_view"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_gravity="start"
-            android:fitsSystemWindows="true"
-            app:headerLayout="@layout/nav_header"
-            app:menu="@menu/drawer_view" />
 
     </android.support.v4.widget.DrawerLayout>
 </layout>

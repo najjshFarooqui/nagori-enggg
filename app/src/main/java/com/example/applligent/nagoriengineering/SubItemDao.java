@@ -14,10 +14,17 @@ public interface SubItemDao {
     @Query("select max(id) from SubItem limit 1 ")
     int getMaxId();
 
+    @Query("select * from subitem where telPartNumber=:telPartNumber")
+    List<SubItem> getSubParts(String telPartNumber);
+
+    @Query("select * from SubItem where id =:sId ")
+    int get(int sId);
+
     @Insert
     void insertAll(List<SubItem> subitems);
 
     @Insert
     void insert(SubItem subitems);
+
 
 }
