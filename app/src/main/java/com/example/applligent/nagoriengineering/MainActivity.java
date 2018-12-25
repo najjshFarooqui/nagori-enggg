@@ -24,13 +24,16 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         itemDao = MyNagoriApplication.getDatabase().itemDao();
         subItemDao = MyNagoriApplication.getDatabase().subItemDao();
-        readPartsCsv();
-        readSubPartsCsv();
+        if (!GeneralPreference.getDataLoaded(this)) {
+            readPartsCsv();
+            readSubPartsCsv();
+            GeneralPreference.setDataLoaded(this);
+        }
         startActivity(new Intent(this, CompanyListActivity.class));
-
     }
 
     public void readPartsCsv() {
+        itemDao.deleteAll();
         InputStream is = getResources().openRawResource(R.raw.parts);
         BufferedReader reader = new BufferedReader(
                 new InputStreamReader(is, Charset.forName("UTF-8")));
@@ -73,35 +76,37 @@ public class MainActivity extends AppCompatActivity {
             Log.d("abc123", list.get(i).application);
         }
     }
-        public void readSubPartsCsv() {
-            InputStream is = getResources().openRawResource(R.raw.subparts);
-            BufferedReader reader = new BufferedReader(
-                    new InputStreamReader(is, Charset.forName("UTF-8")));
-            String line = "";
 
-            try {
-                while ((line = reader.readLine()) != null) {
-                    // Split the line into different tokens (using the comma as a separator).
-                    String[] tokens; // Read the data and store it in the WellData POJO.
-                    tokens = line.split(",(?=(?:[^\"]*\"[^\"]*\")*[^\"]*$)");
+    public void readSubPartsCsv() {
+        subItemDao.deleteAll();
+        InputStream is = getResources().openRawResource(R.raw.subparts);
+        BufferedReader reader = new BufferedReader(
+                new InputStreamReader(is, Charset.forName("UTF-8")));
+        String line = "";
 
-                    // Read the data and store it in the WellData POJO.
-                    subItem = new SubItem();
-                    subItem.partNumber = tokens[0].trim();
-                    subItem.partNumber = (tokens[1].trim());
-                    subItem.description = tokens[2].trim();
-                    subItem.mrp = Float.parseFloat(tokens[3].trim());
-                    subItemDao.insert(subItem);
+        try {
+            while ((line = reader.readLine()) != null) {
+                // Split the line into different tokens (using the comma as a separator).
+                String[] tokens; // Read the data and store it in the WellData POJO.
+                tokens = line.split(",(?=(?:[^\"]*\"[^\"]*\")*[^\"]*$)");
 
-                    Log.d("details12345", "Just Created " + subItem);
-                }
-            } catch (IOException e1) {
-                Log.e("MainActivity", "Error" + line, e1);
-                e1.printStackTrace();
+                // Read the data and store it in the WellData POJO.
+                subItem = new SubItem();
+                subItem.telPartNumber = tokens[0].trim();
+                subItem.partNumber = (tokens[1].trim());
+                subItem.description = tokens[2].trim();
+                subItem.mrp = Float.parseFloat(tokens[3].trim());
+                subItemDao.insert(subItem);
+
+                Log.d("details12345", "Just Created " + subItem);
             }
-            List<SubItem> list = subItemDao.getAll();
-            for (int i = 0; i < list.size(); i++) {
-                Log.d("abc123", list.get(i).description);
-            }
+        } catch (IOException e1) {
+            Log.e("MainActivity", "Error" + line, e1);
+            e1.printStackTrace();
+        }
+        List<SubItem> list = subItemDao.getAll();
+        for (int i = 0; i < list.size(); i++) {
+            Log.d("abc123", list.get(i).description);
+        }
     }
 }

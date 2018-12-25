@@ -23,10 +23,10 @@
         <activity android:name=".About" />
         <activity android:name=".HomeActivity" />
         <activity android:name=".PartsInfoActivity" />
-        <activity android:name=".ServiceInfoActivity" />
         <activity
             android:name=".CompanyDetailsActivity"
             android:screenOrientation="landscape" />
+        <activity android:name=".ServiceInfoActivity"></activity>
     </application>
 
 </manifest>

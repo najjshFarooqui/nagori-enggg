@@ -27,4 +27,7 @@ public interface SubItemDao {
     void insert(SubItem subitems);
 
 
+    @Query("delete from Subitem")
+    void deleteAll();
+
 }

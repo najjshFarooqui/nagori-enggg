@@ -11,11 +11,13 @@ import android.widget.TextView;
 
 import com.example.applligent.nagoriengineering.databinding.ActivityDetailsBinding;
 
+import java.util.List;
+
 public class DetailsActivity extends AppCompatActivity {
     DrawerLayout drawerLayout;
     long itemId;
     ItemDao itemDao;
-    //SubItemDao subItemDao;
+    SubItem subItem;
     ActivityDetailsBinding binding;
     Item item;
 
@@ -27,15 +29,13 @@ public class DetailsActivity extends AppCompatActivity {
         //subItemDao = MyNagoriApplication.getDatabase().subItemDao();
         itemDao = MyNagoriApplication.getDatabase().itemDao();
         itemId = getIntent().getLongExtra("item_id", -1);
-
-        Log.i("telpart id 1234", String.valueOf((itemDao.get(itemId))));
-
         showDetails();
         binding.parts.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                item = itemDao.get(itemId);
                 Intent intent = new Intent(getApplicationContext(), PartsInfoActivity.class);
-                intent.putExtra("parts_info", item.id);
+                intent.putExtra("tel_part_number", item.telPartNumber);
                 startActivity(intent);
 
             }
@@ -43,8 +43,9 @@ public class DetailsActivity extends AppCompatActivity {
         binding.service.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                item = itemDao.get(itemId);
                 Intent intent = new Intent(getApplicationContext(), ServiceInfoActivity.class);
-                //intent.putExtra("service_info", subItem.id);
+                //intent.putExtra("tel_part_number",item.telPartNumber );
                 startActivity(intent);
             }
         });

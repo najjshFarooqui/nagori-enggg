@@ -1,20 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout>
 
-    <android.support.v4.widget.DrawerLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools"
-        android:id="@+id/drawer_layout"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:fitsSystemWindows="true"
-        tools:context=".DetailsActivity">
-
-        <RelativeLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="#00FFFF">
+        <RelativeLayout android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="#00FFFF"
+                xmlns:android="http://schemas.android.com/apk/res/android">
 
 
             <TableLayout
@@ -118,7 +108,7 @@
                 android:layout_alignParentEnd="true"
                 android:layout_marginTop="224dp"
                 android:layout_marginEnd="65dp"
-                android:text="Service info" />
+                android:text="parts info" />
 
             <Button
                 android:id="@+id/service"
@@ -128,8 +118,7 @@
                 android:layout_alignParentTop="true"
                 android:layout_marginStart="65dp"
                 android:layout_marginTop="224dp"
-                android:text=" parts info" />
+                android:text=" service info" />
         </RelativeLayout>
 
-    </android.support.v4.widget.DrawerLayout>
 </layout>

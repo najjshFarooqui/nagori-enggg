@@ -17,35 +17,65 @@ import com.example.applligent.nagoriengineering.databinding.ActivityPartsInfoBin
 
 import org.w3c.dom.Text;
 
+import java.util.List;
+
 public class PartsInfoActivity extends AppCompatActivity {
-    Item item;
-    ItemDao itemDao;
+    SubItem subItem;
     ActivityPartsInfoBinding binding;
-    String  telPart;
+    String telPart;
     TableLayout tableLayout;
+    SubItemDao subItemDao;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        itemDao = MyNagoriApplication.getDatabase().itemDao();
+        subItemDao = MyNagoriApplication.getDatabase().subItemDao();
         binding = DataBindingUtil.setContentView(this, R.layout.activity_parts_info);
         telPart = getIntent().getStringExtra("tel_part_number");
-        tableLayout=(TableLayout)findViewById(R.id.tableLayout);
 
         TableRow info = new TableRow(this);
-       info.setBackgroundColor(Color.GRAY);
-       info.setLayoutParams(new TableRow.LayoutParams(
+        info.setBackgroundColor(Color.GRAY);
+        info.setLayoutParams(new TableRow.LayoutParams(
                 TableRow.LayoutParams.FILL_PARENT,
                 TableRow.LayoutParams.WRAP_CONTENT));
         TextView partNo = new TextView(this);
         partNo.setText("PART NO.");
-
         TextView description = new TextView(this);
         description.setText("DESCRIPTION");
-
         TextView mrp = new TextView(this);
         mrp.setText("MRP");
 
+        List<SubItem> subItemDetail = subItemDao.getSubParts(telPart);
+        for (int i = 0; i < subItemDetail.size(); i++) {
+            TableRow tableRow = new TableRow(this);
+            tableRow.setLayoutParams(new TableRow.LayoutParams(
+                    TableRow.LayoutParams.FILL_PARENT,
+                    TableRow.LayoutParams.WRAP_CONTENT));
+            tableRow.setId(i);
+            subItem = subItemDetail.get(i);
+            tableRow.addView(getRowLabel(i*100, subItem.partNumber));
+            tableRow.addView(getRowLabel(i*100, subItem.description));
+            tableRow.addView(getRowLabel(i*100, subItem.mrp+""));
+            binding.tableLayout.addView(tableRow, new TableLayout.LayoutParams(
+                    TableLayout.LayoutParams.FILL_PARENT,
+                    TableLayout.LayoutParams.WRAP_CONTENT));
 
-}
+
+        }
+    }
+
+
+        private TextView getRowLabel(int id, String text) {
+            TextView label = new TextView(this);
+            label.setId(100 * id);
+            label.setText(text);
+            label.setTextColor(Color.WHITE);
+            label.setPadding(5, 5, 5, 5);
+            return label;
+
+
+        }
+
+    }
+
