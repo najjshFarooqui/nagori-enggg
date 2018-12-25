@@ -4,8 +4,12 @@ import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.databinding.DataBindingUtil;
 import android.graphics.Color;
+import android.graphics.Typeface;
 import android.os.Bundle;
+import android.support.v4.content.ContextCompat;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.TableLayout;
 import android.widget.TableRow;
@@ -31,15 +35,25 @@ public class CompanyDetailsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         itemDao = MyNagoriApplication.getDatabase().itemDao();
         binding = DataBindingUtil.setContentView(this, R.layout.activity_company_details);
-
-
         oem = getIntent().getStringExtra("oem");
+        ActionBar actionBar = getSupportActionBar();
+        if(actionBar != null){
+            actionBar.setTitle(oem);
+            actionBar.setHomeAsUpIndicator(R.drawable.ic_arrow_back);
+            actionBar.setDisplayShowTitleEnabled(true);
+            actionBar.setDisplayHomeAsUpEnabled(true);
+        }
+
         itemList = itemDao.getParts(oem);
         headerData();
         rowData();
+    }
 
-
-
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if(item.getItemId() == android.R.id.home)
+            finish();
+        return super.onOptionsItemSelected(item);
     }
 
     @SuppressLint("ResourceType")
@@ -52,7 +66,7 @@ public class CompanyDetailsActivity extends AppCompatActivity {
                 TableRow.LayoutParams.WRAP_CONTENT,
                 TableRow.LayoutParams.WRAP_CONTENT));
 
-        String[] headers = {"Sno.", "OEM", "Tel Part Number", "Engine", "Application", "Mrp", "Orientation Alpha", "Orientation Beta", "Str Pre", "Setting pr", "Lift", "Reman"};
+        String[] headers = {"SL No", "OEM Part Number", "TEL Part Number", "Engine", "Application", "MRP", "Orientation Alpha", "Orientation Beta", "Str Pre", "Setting pr", "Lift", "Reman"};
         for (int i = 0; i < headers.length; i++) {
             data.addView(getHeaderLabel(i, headers[i]));
         }
@@ -70,7 +84,7 @@ public class CompanyDetailsActivity extends AppCompatActivity {
                 @Override
                 public void onClick(View v) {
 
-                    Intent intent = new Intent(getApplicationContext(),DetailsActivity.class);
+                    Intent intent = new Intent(getApplicationContext(), DetailsActivity.class);
                     //intent.putExtra("tel_part_number", itemList.get(v.getId()).telPartNumber);
                     int rowId = v.getId();
                     Item item = itemList.get(rowId);
@@ -84,18 +98,19 @@ public class CompanyDetailsActivity extends AppCompatActivity {
                     TableRow.LayoutParams.FILL_PARENT,
                     TableRow.LayoutParams.WRAP_CONTENT));
             Item item = itemList.get(i);
-            row.addView(getRowLabel(i * 1, item.sNo + ""));
-            row.addView(getRowLabel(i * 2, item.oem));
-            row.addView(getRowLabel(i * 3, item.telPartNumber));
-            row.addView(getRowLabel(i * 4, item.engine));
-            row.addView(getRowLabel(i * 5, item.application));
-            row.addView(getRowLabel(i * 6, Float.toString(item.mrp)));
-            row.addView(getRowLabel(i * 7, Integer.toString(item.orientationAlpha)));
-            row.addView(getRowLabel(i * 8, Integer.toString(item.orientationBeta)));
-            row.addView(getRowLabel(i * 9, item.strPre));
-            row.addView(getRowLabel(i * 10, item.settingPre));
-            row.addView(getRowLabel(i * 11, item.lift));
-            row.addView(getRowLabel(i * 12, item.reman));
+            row.addView(getRowLabel(i,i * 1, item.sNo + ""));
+            row.addView(getRowLabel(i,i * 2, item.telPartNumber));
+            row.addView(getRowLabel(i,i * 3, item.oem));
+            row.addView(getRowLabel(i,i * 4, item.engine));
+            row.addView(getRowLabel(i,i * 5, item.application));
+            row.addView(getRowLabel(i,i * 6, Float.toString(item.mrp)));
+            row.addView(getRowLabel(i,i * 7, Integer.toString(item.orientationAlpha)));
+            row.addView(getRowLabel(i,i * 8, Integer.toString(item.orientationBeta)));
+            row.addView(getRowLabel(i,i * 9, item.strPre));
+            row.addView(getRowLabel(i,i * 10, item.settingPre));
+            row.addView(getRowLabel(i,i * 11, item.lift));
+            row.addView(getRowLabel(i,i * 12, item.reman));
+
             binding.tableLayout.addView(row, new TableLayout.LayoutParams(
                     TableLayout.LayoutParams.FILL_PARENT,
                     TableLayout.LayoutParams.WRAP_CONTENT));
@@ -108,24 +123,27 @@ public class CompanyDetailsActivity extends AppCompatActivity {
     private TextView getHeaderLabel(int id, String text) {
         TextView label = new TextView(this);
         label.setId(100 * id);
+        label.setBackgroundColor(ContextCompat.getColor(this, R.color.table_header));
         label.setText(text);
-        label.setTextColor(Color.WHITE);
-        label.setPadding(5, 5, 5, 5);
+        label.setTypeface(null, Typeface.BOLD);
+        label.setTextColor(ContextCompat.getColor(this, R.color.primary_text));
+        label.setPadding(24, 24, 24, 24);
         return label;
-
     }
 
-    private TextView getRowLabel(int id, String text) {
+    private TextView getRowLabel(int rowId, int id, String text) {
         TextView label = new TextView(this);
-        label.setId(100 * id);
+        label.setId(1000 * id);
         label.setText(text);
-        label.setTextColor(Color.WHITE);
-        label.setPadding(5, 5, 5, 5);
+        label.setTextColor(ContextCompat.getColor(this,R.color.primary_text));
+        label.setPadding(24, 24, 24, 24);
+        if(rowId%2==0)
+            label.setBackgroundColor(ContextCompat.getColor(this,R.color.white));
+        else
+            label.setBackgroundColor(ContextCompat.getColor(this,R.color.table_row));
+
         return label;
-
-
     }
-
 
 
 }

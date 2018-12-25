@@ -34,41 +34,12 @@ public class CompanyListActivity extends AppCompatActivity {
         binding = DataBindingUtil.setContentView(this, R.layout.activity_item_list);
         itemDao = MyNagoriApplication.getDatabase().itemDao();
 
-        getSupportActionBar().setTitle("Company");
+        getSupportActionBar().setTitle("Company List");
 
         binding.recyclerView.setLayoutManager(new LinearLayoutManager(this));
         List<String> companyList = itemDao.distOem();
         adapter = new ItemAdapter(companyList);
         binding.recyclerView.setAdapter(adapter);
-
-        NavigationView navigationView = findViewById(R.id.nav_view);
-        navigationView.setVisibility(View.GONE);
-        navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
-            @Override
-            public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
-                menuItem.setChecked(true);
-                binding.drawerLayout.closeDrawers();
-                if (menuItem.getItemId() == R.id.nav_home) {
-                    Intent intent = new Intent(getApplicationContext(), CompanyListActivity.class);
-                    startActivity(intent);
-                } else if (menuItem.getItemId() == R.id.nav_copyright) {
-                    Intent intent = new Intent(getApplicationContext(), Copyright.class);
-                    startActivity(intent);
-                } else if (menuItem.getItemId() == R.id.nav_about) {
-                    Intent intent = new Intent(getApplicationContext(), About.class);
-                    startActivity(intent);
-                } else if (menuItem.getItemId() == R.id.nav_exit) {
-                    Intent intent = new Intent(Intent.ACTION_MAIN);
-                    intent.addCategory(Intent.CATEGORY_HOME);
-                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                    startActivity(intent);
-                }
-                return true;
-            }
-        });
-
-
-
     }
 
     @Override
