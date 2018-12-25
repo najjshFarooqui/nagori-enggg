@@ -1,9 +1,17 @@
-package com.example.applligent.nagoriengineering;
+package com.example.applligent.nagoriengineering.view;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+
+import com.example.applligent.nagoriengineering.GeneralPreference;
+import com.example.applligent.nagoriengineering.MyNagoriApplication;
+import com.example.applligent.nagoriengineering.R;
+import com.example.applligent.nagoriengineering.dao.ItemDao;
+import com.example.applligent.nagoriengineering.dao.SubItemDao;
+import com.example.applligent.nagoriengineering.model.Item;
+import com.example.applligent.nagoriengineering.model.SubItem;
 
 import java.io.BufferedReader;
 import java.io.IOException;

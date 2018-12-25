@@ -1,4 +1,4 @@
-package com.example.applligent.nagoriengineering;
+package com.example.applligent.nagoriengineering.view;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
@@ -11,7 +11,11 @@ import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
 
+import com.example.applligent.nagoriengineering.MyNagoriApplication;
+import com.example.applligent.nagoriengineering.R;
+import com.example.applligent.nagoriengineering.dao.ItemDao;
 import com.example.applligent.nagoriengineering.databinding.ActivityCompanyDetailsBinding;
+import com.example.applligent.nagoriengineering.model.Item;
 
 import java.util.List;
 
@@ -27,6 +31,8 @@ public class CompanyDetailsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         itemDao = MyNagoriApplication.getDatabase().itemDao();
         binding = DataBindingUtil.setContentView(this, R.layout.activity_company_details);
+
+
         oem = getIntent().getStringExtra("oem");
         itemList = itemDao.getParts(oem);
         headerData();

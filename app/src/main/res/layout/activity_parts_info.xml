@@ -5,7 +5,7 @@
         xmlns:tools="http://schemas.android.com/tools"
         android:background="#E0FFFF"
         android:orientation="vertical"
-        tools:context=".PartsInfoActivity"
+        tools:context=".view.PartsInfoActivity"
         xmlns:android="http://schemas.android.com/apk/res/android">
 
         <TableLayout

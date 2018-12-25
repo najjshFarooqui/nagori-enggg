@@ -1,4 +1,4 @@
-package com.example.applligent.nagoriengineering;
+package com.example.applligent.nagoriengineering.model;
 
 import android.arch.persistence.room.Entity;
 import android.arch.persistence.room.PrimaryKey;
@@ -6,11 +6,11 @@ import android.arch.persistence.room.PrimaryKey;
 @Entity
 public class SubItem {
     @PrimaryKey(autoGenerate = true)
-    int id;
-    String telPartNumber;
-    String partNumber;
-    String description;
-    float mrp;
+    public int id;
+    public String telPartNumber;
+    public String partNumber;
+    public String description;
+    public float mrp;
    public SubItem(){
 
     }

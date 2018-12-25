@@ -1,4 +1,4 @@
-package com.example.applligent.nagoriengineering;
+package com.example.applligent.nagoriengineering.view;
 
 import android.content.Intent;
 import android.databinding.DataBindingUtil;
@@ -6,7 +6,11 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 
+import com.example.applligent.nagoriengineering.MyNagoriApplication;
+import com.example.applligent.nagoriengineering.R;
+import com.example.applligent.nagoriengineering.dao.ItemDao;
 import com.example.applligent.nagoriengineering.databinding.ActivityServiceInfoBinding;
+import com.example.applligent.nagoriengineering.model.Item;
 
 public class ServiceInfoActivity extends AppCompatActivity {
     public int partsId;

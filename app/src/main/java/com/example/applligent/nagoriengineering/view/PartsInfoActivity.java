@@ -1,21 +1,18 @@
-package com.example.applligent.nagoriengineering;
+package com.example.applligent.nagoriengineering.view;
 
-import android.content.Intent;
 import android.databinding.DataBindingUtil;
 import android.graphics.Color;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.design.widget.NavigationView;
-import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
-import android.view.MenuItem;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
 
+import com.example.applligent.nagoriengineering.MyNagoriApplication;
+import com.example.applligent.nagoriengineering.R;
+import com.example.applligent.nagoriengineering.dao.SubItemDao;
 import com.example.applligent.nagoriengineering.databinding.ActivityPartsInfoBinding;
-
-import org.w3c.dom.Text;
+import com.example.applligent.nagoriengineering.model.SubItem;
 
 import java.util.List;
 

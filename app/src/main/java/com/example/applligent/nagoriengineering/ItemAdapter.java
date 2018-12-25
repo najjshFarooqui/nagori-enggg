@@ -11,6 +11,8 @@ import android.widget.Filterable;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.example.applligent.nagoriengineering.view.CompanyDetailsActivity;
+
 import java.util.ArrayList;
 import java.util.List;
 
