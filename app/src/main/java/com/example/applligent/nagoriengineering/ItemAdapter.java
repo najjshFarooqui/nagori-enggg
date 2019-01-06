@@ -47,6 +47,11 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ItemHolder> im
         }
     };
 
+    @Override
+    public int getItemViewType(int position) {
+        return super.getItemViewType(position);
+    }
+
     public ItemAdapter(List<String> items) {
         this.items = items;
         itemsFull = new ArrayList<>(items);
@@ -54,7 +59,7 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ItemHolder> im
 
     @NonNull
     @Override
-    public ItemAdapter.ItemHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
+    public ItemAdapter.ItemHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int position) {
         LayoutInflater inflater = LayoutInflater.from(viewGroup.getContext());
         View view = inflater.inflate(R.layout.activity_part_list, viewGroup, false);
         return new ItemHolder(view);

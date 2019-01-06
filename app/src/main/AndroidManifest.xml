@@ -2,7 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     package="com.example.applligent.nagoriengineering">
-
+<uses-permission android:name="android.permission.INTERNET"/>
     <application
         android:name=".MyNagoriApplication"
         android:allowBackup="true"
@@ -13,7 +13,7 @@
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
         
-        <activity android:name=".view.MainActivity">
+        <activity android:name=".view.HomeActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -25,11 +25,27 @@
         <activity android:name=".view.DetailsActivity" />
         <activity android:name=".Copyright" />
         <activity android:name=".About" />
-        <activity android:name=".view.HomeActivity" />
         <activity android:name=".view.PartsInfoActivity" />
-        <activity
-            android:name=".view.CompanyDetailsActivity" />
+        <activity android:name=".view.CompanyDetailsActivity" />
         <activity android:name=".view.ServiceInfoActivity"/>
+        <activity android:name=".view.ChatActivity" />
+        <activity android:name=".view.LoginActvity" />
+        <activity android:name=".view.RegisterActivity" />
+        <activity android:name=".view.StartActivity" />
+        <activity android:name=".view.MainActivity"/>
+        <service
+            android:name="com.example.applligent.nagoriengineering.service.MessageService">
+            <intent-filter>
+                <action android:name="com.google.firebase.MESSAGING_EVENT"/>
+            </intent-filter>
+        </service>
+        <meta-data
+            android:name="com.google.firebase.messaging.default_notification_icon"
+            android:resource="@drawable/turbine"/>
+        <meta-data
+            android:name="com.google.firebase.messaging.default_notification_color"
+            android:resource="@color/colorAccent"/>
+
     </application>
 
 </manifest>

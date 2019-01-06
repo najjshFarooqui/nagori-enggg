@@ -3,6 +3,9 @@ package com.example.applligent.nagoriengineering;
 import android.app.Application;
 import android.arch.persistence.room.Room;
 
+import com.google.firebase.FirebaseApp;
+import com.google.firebase.messaging.FirebaseMessaging;
+
 public class MyNagoriApplication extends Application {
     final static String DATABASE_NAME = "db-newNagori";
     private static MyDatabase myDatabase;
@@ -22,6 +25,8 @@ public class MyNagoriApplication extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
+        FirebaseApp.initializeApp(this);
+        FirebaseMessaging.getInstance().subscribeToTopic("nagoriapp");
         myNagoriApplication = this;
     }
 }
