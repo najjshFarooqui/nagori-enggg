@@ -22,11 +22,19 @@ public class HomeActivity extends AppCompatActivity {
                 startActivity(new Intent(HomeActivity.this, ChatActivity.class));
             }
         });
-        Button companies =(Button)findViewById(R.id.CompanyButton);
+        Button companies =(Button)findViewById(R.id.companyButton);
         companies.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(HomeActivity.this,MainActivity.class));
+            }
+        });
+
+        Button reminders =(Button)findViewById(R.id.reminderButton);
+        reminders.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(HomeActivity.this,ReminderActivity.class));
             }
         });
     }

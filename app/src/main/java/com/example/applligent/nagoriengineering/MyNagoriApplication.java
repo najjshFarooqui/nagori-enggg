@@ -26,7 +26,7 @@ public class MyNagoriApplication extends Application {
     public void onCreate() {
         super.onCreate();
         FirebaseApp.initializeApp(this);
-        FirebaseMessaging.getInstance().subscribeToTopic("nagoriapp");
+        FirebaseMessaging.getInstance().subscribeToTopic("notifications");
         myNagoriApplication = this;
     }
 }

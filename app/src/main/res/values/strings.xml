@@ -2,5 +2,14 @@
     <string name="app_name">Nagori Engineering</string>
 
     <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Copyright information</string>
+    <array name="spinner_item">
+        <item>Select Name</item>
+        <item>Aakib</item>
+        <item>Rizwan</item>
+        <item>Zuber</item>
+        <item>Najish</item>
+        <item>Select All</item>
+
+    </array>
+
 </resources>

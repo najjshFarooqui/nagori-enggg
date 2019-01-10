@@ -30,4 +30,5 @@ public interface ChatDao {
     @Delete
     void delete(Chat chat);
 
+
 }

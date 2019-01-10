@@ -11,5 +11,5 @@ import java.util.List;
 @Dao
 public interface RegisterDao {
     @Insert
-    void insertAll(List<RegisterModel> chats);
+    void insertAll(List<RegisterModel> register);
 }
