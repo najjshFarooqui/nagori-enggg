@@ -8,12 +8,15 @@ import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.example.applligent.nagoriengineering.dao.ChatDao;
 import com.example.applligent.nagoriengineering.model.Chat;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.ItemHolder> {
     List<Chat> messages;
+
 
     public MessageAdapter(List<Chat> messages){
         this.messages = messages;
@@ -34,14 +37,19 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.ItemHold
         itemHolder.bindTo(messages.get(i));
     }
 
+
     @Override
     public int getItemCount() {
         return messages.size();
     }
+
+
+
     public class ItemHolder extends RecyclerView.ViewHolder{
         TextView userName;
-        EditText message;
+        TextView message;
         TextView time;
+
 
 
         public ItemHolder(@NonNull View itemView) {
@@ -49,11 +57,14 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.ItemHold
             userName=itemView.findViewById(R.id.message_user);
             message=itemView.findViewById(R.id.message_text);
             time=itemView.findViewById(R.id.message_time);
+
         }
-        protected void bindTo(Chat items) {
-            userName.setText(items.displayName);
-            message.setText(items.message);
-            time.setText(Long.toString(items.timeStamp));
+        protected void bindTo(Chat chats) {
+           userName.setText(chats.displayName);
+           message.setText(chats.message);
+           time.setText(chats.timeStamp);
+
+
         }
     }
 

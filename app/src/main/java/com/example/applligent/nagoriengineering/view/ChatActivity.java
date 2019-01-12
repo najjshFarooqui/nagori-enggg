@@ -7,11 +7,13 @@ import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
+
 import com.example.applligent.nagoriengineering.MessageAdapter;
 import com.example.applligent.nagoriengineering.MyNagoriApplication;
 import com.example.applligent.nagoriengineering.R;
@@ -22,6 +24,7 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import java.util.Date;
 import java.util.List;
 
 
@@ -30,12 +33,13 @@ public class ChatActivity extends AppCompatActivity {
     DatabaseReference reference;
     ChatDao chatDao;
     MessageAdapter messageAdapter;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_chat);
         chatDao = MyNagoriApplication.getDatabase().chatDao();
-        ActionBar actionBar =getSupportActionBar();
+        ActionBar actionBar = getSupportActionBar();
         if (actionBar != null) {
             actionBar.setTitle("CHATS");
             actionBar.setHomeAsUpIndicator(R.drawable.ic_arrow_back);
@@ -50,7 +54,8 @@ public class ChatActivity extends AppCompatActivity {
             @Override
             public void onChanged(@Nullable List<Chat> messages) {
                 RecyclerView messageView = (RecyclerView) findViewById(R.id.list_of_messages);
-                messageAdapter=new MessageAdapter(messages);
+                messageView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
+                messageAdapter = new MessageAdapter(messages);
                 messageView.setAdapter(messageAdapter);
             }
         });
@@ -59,21 +64,17 @@ public class ChatActivity extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                EditText input = (EditText) findViewById(R.id.input);
+                EditText message = (EditText) findViewById(R.id.input);
 
-                // Read the input field and push a new instance
-                // of ChatMessage to the Firebase database
-
-                Chat chatMessages = new Chat(input.getText().toString(),
-                        FirebaseAuth.getInstance()
-                                .getCurrentUser()
-                                .getDisplayName());
-                reference = FirebaseDatabase.getInstance().getReference("messages");
-                reference.push().setValue(chatMessages);
+                Chat chatMessages = new Chat();
                 chatDao.insert(chatMessages);
-
-                // Clear the input
-                input.setText("");
+                chatMessages.message = message.getText().toString();
+                 FirebaseUser currentUser  =FirebaseAuth.getInstance().getCurrentUser() ;
+                chatMessages.displayName=currentUser.toString();
+                chatMessages.userId="userId";
+                reference = FirebaseDatabase.getInstance().getReference().child("messages");
+                reference.push().setValue(chatMessages);
+                message.setText("");
             }
         });
     }
@@ -104,18 +105,18 @@ public class ChatActivity extends AppCompatActivity {
     public void redirectUser() {
         startActivity(new Intent(ChatActivity.this, StartActivity.class));
     }
+
     @Override
     public void onStart() {
         super.onStart();
         // Check if user is signed in (non-null) and update UI accordingly.
         FirebaseUser currentUser = mAuth.getCurrentUser();
-        if(currentUser==null){
-            startActivity(new Intent (ChatActivity.this,StartActivity.class ));
+        if (currentUser == null) {
+            startActivity(new Intent(ChatActivity.this, StartActivity.class));
             finish();
         }
 
     }
-
 
 
 }

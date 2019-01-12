@@ -62,21 +62,21 @@ public class RegisterActivity extends AppCompatActivity {
         binding.button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String etNAme = binding.etNAme.getText().toString();
+                String etName = binding.etName.getText().toString();
                 String etEmail = binding.etEmail.getText().toString();
                 String etPassword = binding.etPassword.getText().toString();
-                if (!TextUtils.isEmpty(etNAme) || !TextUtils.isEmpty(etEmail) || !TextUtils.isEmpty(etPassword)) {
+                if (!TextUtils.isEmpty(etName) || !TextUtils.isEmpty(etEmail) || !TextUtils.isEmpty(etPassword)) {
                     progressBar.setTitle("Registration progress");
                     progressBar.setMessage("please wait");
                     progressBar.setCanceledOnTouchOutside(false);
                     progressBar.show();
-                    registerUser(etNAme, etEmail, etPassword);
+                    registerUser(etName, etEmail, etPassword);
                     ArrayList registerModel = new ArrayList();
-                    registerModel.add(etNAme);
+                    registerModel.add(etName);
                     registerModel.add(etEmail);
                     registerModel.add(etPassword);
 
-                   // registerDao.insertAll(registerModel);
+                   registerDao.insertAll(registerModel);
                 }
             }
         });

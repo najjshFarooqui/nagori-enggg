@@ -1,15 +1,13 @@
 <resources>
     <string name="app_name">Nagori Engineering</string>
 
-    <!-- TODO: Remove or change this placeholder text -->
-    <array name="spinner_item">
-        <item>Select Name</item>
+    <string-array name="reminde_spiner">
+        <item>Select name</item>
         <item>Aakib</item>
         <item>Rizwan</item>
         <item>Zuber</item>
-        <item>Najish</item>
-        <item>Select All</item>
+        <item>Aamir</item>
+        <item>All users</item>
 
-    </array>
-
+    </string-array>
 </resources>
