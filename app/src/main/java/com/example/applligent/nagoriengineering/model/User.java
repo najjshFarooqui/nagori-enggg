@@ -7,15 +7,15 @@ import android.support.annotation.NonNull;
 import java.util.UUID;
 
 @Entity
-public class RegisterModel {
+public class User {
     @NonNull
     @PrimaryKey
     public String id = UUID.randomUUID().toString();
-    public String userName;
-    public String userEmail;
-    public String userPassword;
+    public String displayName;
+    public String email;
+    public String password;
 
 
-public RegisterModel(){
-}
+    public User() {
+    }
 }

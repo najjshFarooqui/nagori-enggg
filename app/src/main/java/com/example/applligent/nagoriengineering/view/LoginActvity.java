@@ -6,7 +6,6 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.MenuItem;
@@ -16,11 +15,17 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.applligent.nagoriengineering.R;
+import com.example.applligent.nagoriengineering.model.User;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
+import java.util.ArrayList;
 
 
 public class LoginActvity extends AppCompatActivity {
@@ -72,23 +77,57 @@ public class LoginActvity extends AppCompatActivity {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
+                            Log.d(TAG, "signInWithEmail:success");
+                            progress.dismiss();
+                            temp();
                             Intent intent = new Intent(LoginActvity.this, MainActivity.class);
                             intent.addFlags(intent.FLAG_ACTIVITY_NEW_TASK | intent.FLAG_ACTIVITY_CLEAR_TASK);
                             startActivity(intent);
-                            progress.dismiss();
                             finish();
-                            Log.d(TAG, "signInWithEmail:success");
-                            FirebaseUser user = mAuth.getCurrentUser();
                         } else {
-                            progress.hide();
                             // If sign in fails, display a message_layout to the user.
                             Log.w(TAG, "signInWithEmail:failure", task.getException());
+                            progress.dismiss();
                             Toast.makeText(LoginActvity.this, "Authentication failed.",
                                     Toast.LENGTH_SHORT).show();
-
                         }
                     }
                 });
+    }
+
+
+    private void temp() {
+        FirebaseDatabase.getInstance().getReference().child("user").addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                ArrayList<User> users = new ArrayList<>();
+                boolean isRegistered = false;
+                for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
+                    User user = snapshot.getValue(User.class);
+                    users.add(user);
+                    if (user.email == FirebaseAuth.getInstance().getCurrentUser().getEmail())
+                        isRegistered = true;
+                }
+
+                if (!isRegistered) {
+                    startActivity(new Intent(LoginActvity.this, RegisterActivity.class));
+
+                }
+
+
+                progress.dismiss();
+                Intent intent = new Intent(LoginActvity.this, MainActivity.class);
+                intent.addFlags(intent.FLAG_ACTIVITY_NEW_TASK | intent.FLAG_ACTIVITY_CLEAR_TASK);
+                startActivity(intent);
+                finish();
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+
+        });
     }
 
     @Override

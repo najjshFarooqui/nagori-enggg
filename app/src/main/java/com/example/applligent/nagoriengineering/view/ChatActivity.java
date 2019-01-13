@@ -14,6 +14,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 
+import com.example.applligent.nagoriengineering.GeneralPreference;
 import com.example.applligent.nagoriengineering.MessageAdapter;
 import com.example.applligent.nagoriengineering.MyNagoriApplication;
 import com.example.applligent.nagoriengineering.R;
@@ -24,9 +25,10 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-
 
 public class ChatActivity extends AppCompatActivity {
     FirebaseAuth mAuth;
@@ -65,18 +67,25 @@ public class ChatActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 EditText message = (EditText) findViewById(R.id.input);
-
                 Chat chatMessages = new Chat();
-                chatDao.insert(chatMessages);
                 chatMessages.message = message.getText().toString();
-                 FirebaseUser currentUser  =FirebaseAuth.getInstance().getCurrentUser() ;
-                chatMessages.displayName=currentUser.toString();
-                chatMessages.userId="userId";
+                FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser();
+
+
+                chatMessages.displayName = GeneralPreference.getNameLoaded(getApplicationContext());
+                chatMessages.userId = "userId";
+                SimpleDateFormat sdf = new SimpleDateFormat("YYYYMMDDHHmmss");
+
+                chatMessages.timeStamp = sdf.format(new Date());
+                List<Chat> chatMessagesList = new ArrayList<>();
+                chatMessagesList.add(chatMessages);
+                chatDao.insertAll(chatMessagesList);
                 reference = FirebaseDatabase.getInstance().getReference().child("messages");
                 reference.push().setValue(chatMessages);
                 message.setText("");
             }
         });
+
     }
 
     @Override
