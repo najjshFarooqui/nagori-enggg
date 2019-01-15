@@ -14,4 +14,5 @@
     <color name="table_header">#839DB4</color>
     <color name="table_row">#DFEFEE</color>
     <color name="new_color">#F6F6F6</color>
+    <color name="user_color">#E2FFC9</color>
 </resources>

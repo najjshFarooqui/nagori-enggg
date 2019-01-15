@@ -28,4 +28,26 @@ public class GeneralPreference {
         SharedPreferences sharedPreferences = context.getSharedPreferences(FILE_NAME, Context.MODE_PRIVATE);
         return sharedPreferences.getString("name_loaded_pref", "");
     }
+
+    public static void setUserId(Context context, String userId) {
+        SharedPreferences sharedPreferences = context.getSharedPreferences(FILE_NAME, Context.MODE_PRIVATE);
+        sharedPreferences.edit().putString("userId-shared_pref", userId).apply();
+    }
+
+    public static String getUserId(Context context) {
+        SharedPreferences sharedPreferences = context.getSharedPreferences(FILE_NAME, Context.MODE_PRIVATE);
+        return sharedPreferences.getString("userId-shared_pref", "");
+    }
+
+    public static void setUserEmail(Context context, String email) {
+        SharedPreferences sharedPreferences = context.getSharedPreferences(FILE_NAME, Context.MODE_PRIVATE);
+        sharedPreferences.edit().putString("user_email", email).apply();
+    }
+
+    public static String getUserEmail(Context context) {
+        SharedPreferences sharedPreferences = context.getSharedPreferences(FILE_NAME, Context.MODE_PRIVATE);
+        return sharedPreferences.getString("user_email", "");
+    }
+
+
 }

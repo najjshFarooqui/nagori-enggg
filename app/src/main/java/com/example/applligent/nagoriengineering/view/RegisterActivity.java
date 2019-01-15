@@ -28,8 +28,6 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
-import java.util.UUID;
-
 
 public class RegisterActivity extends AppCompatActivity {
     ActivityRegisterBinding binding;
@@ -85,19 +83,22 @@ public class RegisterActivity extends AppCompatActivity {
                             progressBar.dismiss();
                             final FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser();
                             String userId = currentUser.getUid();
+                            String currentEmail = currentUser.getEmail();
 
 
                             FirebaseDatabase database = FirebaseDatabase.getInstance();
                             DatabaseReference myRef = database.getReference().child("users").child(userId);
 
                             final User user = new User();
-                            user.id = UUID.randomUUID().toString();
                             user.displayName = name;
                             user.email = email;
                             user.password = password;
 
                             GeneralPreference.setNameLoaded(getApplicationContext(), name);
 
+                            GeneralPreference.setUserId(getApplicationContext(), userId);
+
+                            GeneralPreference.setUserEmail(getApplicationContext(), currentEmail);
 
                             myRef.setValue(user).addOnCompleteListener(new OnCompleteListener<Void>() {
                                 @Override

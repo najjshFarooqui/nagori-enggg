@@ -73,16 +73,21 @@ public class ChatActivity extends AppCompatActivity {
 
 
                 chatMessages.displayName = GeneralPreference.getNameLoaded(getApplicationContext());
-                chatMessages.userId = "userId";
-                SimpleDateFormat sdf = new SimpleDateFormat("YYYYMMDDHHmmss");
-
+                chatMessages.userId = GeneralPreference.getUserId(getApplicationContext());
+                SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");
+                SimpleDateFormat timeHourMin = new SimpleDateFormat("HH:mm");
                 chatMessages.timeStamp = sdf.format(new Date());
+                chatMessages.hourMinute = timeHourMin.format(new Date());
                 List<Chat> chatMessagesList = new ArrayList<>();
                 chatMessagesList.add(chatMessages);
-                chatDao.insertAll(chatMessagesList);
+                if (GeneralPreference.getUserId(getApplicationContext()) != chatMessages.userId) {
+                    chatDao.insertAll(chatMessagesList);
+                }
+
                 reference = FirebaseDatabase.getInstance().getReference().child("messages");
                 reference.push().setValue(chatMessages);
                 message.setText("");
+                message.setHint("Type a message");
             }
         });
 
@@ -103,7 +108,7 @@ public class ChatActivity extends AppCompatActivity {
                 redirectUser();
                 return true;
             case R.id.home:
-                startActivity(new Intent(ChatActivity.this, MainActivity.class).addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK));
+                startActivity(new Intent(ChatActivity.this, StartActivity.class).addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK));
                 finish();
                 return true;
             default:
