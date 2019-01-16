@@ -47,7 +47,11 @@
             android:name="com.google.firebase.messaging.default_notification_color"
             android:resource="@color/colorAccent" />
 
-        <activity android:name=".view.ReminderActivity"></activity>
+        <activity android:name=".view.ReminderActivity" />
+
+        <receiver android:name=".service.AlarmReciever" />
+
+        <activity android:name=".view.AlarmActivity"></activity>
     </application>
 
 </manifest>

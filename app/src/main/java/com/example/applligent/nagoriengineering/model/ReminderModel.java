@@ -6,7 +6,7 @@ import android.arch.persistence.room.PrimaryKey;
 public class ReminderModel {
 
         @PrimaryKey(autoGenerate = true)
-        public String id;
+        public long id;
         public String user;
         public String message;
         public String time;

@@ -3,7 +3,16 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+  <TextView
+      android:id="@+id/name"
+      android:text="name"
+      android:textStyle="italic"
+      android:textColor="@color/com_facebook_blue"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content" />
+
     <TextView
+        android:layout_below="@+id/name"
         android:id="@+id/message_reminder"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -18,6 +27,7 @@
         android:layout_alignParentEnd="true"
         android:layout_marginEnd="13dp"
         android:text="time" />
+
 
 
 </RelativeLayout>

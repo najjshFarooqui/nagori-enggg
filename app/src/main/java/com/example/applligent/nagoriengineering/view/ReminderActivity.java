@@ -26,6 +26,7 @@ import com.example.applligent.nagoriengineering.ReminderAdapter;
 import com.example.applligent.nagoriengineering.TimePickerFragment;
 import com.example.applligent.nagoriengineering.dao.ReminderDao;
 import com.example.applligent.nagoriengineering.databinding.ActivityReminderBinding;
+import com.example.applligent.nagoriengineering.model.Item;
 import com.example.applligent.nagoriengineering.model.ReminderModel;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
@@ -34,9 +35,9 @@ import com.google.firebase.database.FirebaseDatabase;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
-import java.util.UUID;
+import java.util.Random;
 
-public class ReminderActivity extends AppCompatActivity implements TimePickerDialog.OnTimeSetListener ,DatePickerDialog.OnDateSetListener {
+public class ReminderActivity extends AppCompatActivity implements TimePickerDialog.OnTimeSetListener, DatePickerDialog.OnDateSetListener {
     ActivityReminderBinding binding;
     ReminderDao reminderDao;
     FirebaseAuth mAuth;
@@ -48,11 +49,9 @@ public class ReminderActivity extends AppCompatActivity implements TimePickerDia
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-       binding=DataBindingUtil.setContentView(this,R.layout.activity_reminder);
+        binding = DataBindingUtil.setContentView(this, R.layout.activity_reminder);
         mAuth = FirebaseAuth.getInstance();
-
         reminderDao = MyNagoriApplication.getDatabase().reminderDao();
-
         ActionBar actionBar = getSupportActionBar();
         if (actionBar != null) {
             actionBar.setTitle("Reminder");
@@ -60,8 +59,6 @@ public class ReminderActivity extends AppCompatActivity implements TimePickerDia
             actionBar.setDisplayShowTitleEnabled(true);
             actionBar.setDisplayHomeAsUpEnabled(true);
         }
-
-
         reminderDao.getAll().observe(this, new Observer<List<ReminderModel>>() {
             @Override
             public void onChanged(@Nullable List<ReminderModel> reminders) {
@@ -72,49 +69,50 @@ public class ReminderActivity extends AppCompatActivity implements TimePickerDia
             }
         });
 
-        ArrayAdapter<String> spinnerAdapter = new ArrayAdapter<>(ReminderActivity.this,android.R.layout.simple_list_item_1,getResources().getStringArray(R.array.reminde_spiner));
+        ArrayAdapter<String> spinnerAdapter = new ArrayAdapter<>(ReminderActivity.this, android.R.layout.simple_list_item_1, getResources().getStringArray(R.array.reminde_spiner));
         binding.reminderSpinner.setAdapter(spinnerAdapter);
-
-        binding.setTime.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                DialogFragment timepicker = new TimePickerFragment();
-                timepicker.show(getSupportFragmentManager(),"time picker");
-            }
-        });
 
         binding.setDate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 DialogFragment datePicker = new DatePickerFragment();
-                datePicker.show(getSupportFragmentManager(),"date picker");
+                datePicker.show(getSupportFragmentManager(), "date picker");
+
             }
         });
+
+        binding.setTime.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                DialogFragment timepIcker = new TimePickerFragment();
+                timepIcker.show(getSupportFragmentManager(), "time picker");
+            }
+        });
+
 
         binding.reminderBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 String message = binding.input.getText().toString();
-                String date = binding.setDate.getText().toString();
-                String time = binding.setTime.getText().toString();
                 String name = binding.reminderSpinner.getSelectedItem().toString();
-
-               String personName= (String) binding.reminderSpinner.getSelectedItem();
-               ReminderModel reminderModel = new ReminderModel();
-               if(personName.equalsIgnoreCase("select name")){
-                   Toast.makeText(getApplicationContext(),"please select a name",Toast.LENGTH_SHORT).show();
-                   reminderModel.id = UUID.randomUUID().toString();
-                   reminderModel.message = message;
-                   reminderModel.user = name;
-                   reminderModel.date = date;
-                   reminderModel.time = time;
-                   SimpleDateFormat sdf = new SimpleDateFormat("YYYYMMddHHmmss");
-                   reminderModel.sendingTime = sdf.format(new Date());
-                   reminderDao.insert(reminderModel);
-                   reference = FirebaseDatabase.getInstance().getReference().child("reminders");
-                   reference.push().setValue(reminderModel);
-                   binding.input.setText("");
-                   binding.input.setHint("Type a reminder");
+                String personName = (String) binding.reminderSpinner.getSelectedItem();
+                ReminderModel reminderModel = new ReminderModel();
+                if (personName.equalsIgnoreCase("select name")) {
+                    Toast.makeText(getApplicationContext(), "please select a name", Toast.LENGTH_SHORT).show();
+                    long range = 1234567L;
+                    Random r = new Random();
+                    long number = (long) (r.nextDouble() * range);
+                    reminderModel.id = number;
+                    reminderModel.message = message;
+                    reminderModel.user = name;
+                    SimpleDateFormat sdf = new SimpleDateFormat("YYYYMMddHHmmss");
+                    reminderModel.sendingTime = sdf.format(new Date());
+                    reminderDao.insert(reminderModel);
+                    reference = FirebaseDatabase.getInstance().getReference().child("reminders");
+                    reference.push().setValue(reminderModel);
+                    binding.input.setText("");
+                    binding.input.setHint("Type a reminder");
+                    startActivity(new Intent(ReminderActivity.this, AlarmActivity.class));
 
                 }
             }
@@ -124,13 +122,23 @@ public class ReminderActivity extends AppCompatActivity implements TimePickerDia
 
     @Override
     public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
-        binding.setTime.setText(hourOfDay+ " : " +minute);
+        binding.setTime.setText(hourOfDay + " : " + minute);
+        String time = hourOfDay + " : " + minute;
+        ReminderModel reminderModel = new ReminderModel();
+        reminderModel.time = time;
+        reference = FirebaseDatabase.getInstance().getReference().child("reminders").child("time");
+        reference.push().setValue(reminderModel);
 
     }
 
     @Override
     public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
-        binding.setDate.setText(year+"/"+month+"/"+dayOfMonth);
+        binding.setDate.setText(year + "/" + month + "/" + dayOfMonth);
+        String date = year + "/" + month + "/" + dayOfMonth;
+        ReminderModel reminderModel = new ReminderModel();
+        reminderModel.date = date;
+        reference = FirebaseDatabase.getInstance().getReference().child("reminders").child("date");
+        reference.push().setValue(reminderModel);
     }
 
 
@@ -146,5 +154,5 @@ public class ReminderActivity extends AppCompatActivity implements TimePickerDia
                 return super.onOptionsItemSelected(item);
         }
     }
-    }
+}
 
