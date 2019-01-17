@@ -10,7 +10,6 @@ import android.widget.TextView;
 
 import com.example.applligent.nagoriengineering.model.ReminderModel;
 import com.example.applligent.nagoriengineering.view.AlarmActivity;
-import com.example.applligent.nagoriengineering.view.CompanyDetailsActivity;
 
 import java.util.List;
 
