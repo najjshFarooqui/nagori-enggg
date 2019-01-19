@@ -10,4 +10,6 @@
         <item>All users</item>
 
     </string-array>
+    <string name="title_activity_take_reminder">TakeReminder</string>
+    <string name="action_settings">Settings</string>
 </resources>

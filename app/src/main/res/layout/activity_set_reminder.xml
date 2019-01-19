@@ -9,6 +9,13 @@
         tools:context=".MainActivity">
 
         <EditText
+            android:id="@+id/reminder_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="set title"
+            android:textColorHint="@android:color/holo_blue_dark" />
+
+        <EditText
             android:id="@+id/input"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

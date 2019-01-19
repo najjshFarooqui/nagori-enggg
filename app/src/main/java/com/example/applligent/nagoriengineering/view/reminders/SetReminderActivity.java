@@ -1,4 +1,4 @@
-package com.example.applligent.nagoriengineering.view;
+package com.example.applligent.nagoriengineering.view.reminders;
 
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -23,13 +24,14 @@ import com.example.applligent.nagoriengineering.TimePickerFragment;
 import com.example.applligent.nagoriengineering.dao.ReminderDao;
 import com.example.applligent.nagoriengineering.databinding.ActivitySetReminderBinding;
 import com.example.applligent.nagoriengineering.model.ReminderModel;
+import com.example.applligent.nagoriengineering.view.chat.HomeActivity;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.Random;
+import java.util.UUID;
 
 public class SetReminderActivity extends AppCompatActivity implements TimePickerDialog.OnTimeSetListener, DatePickerDialog.OnDateSetListener {
     ActivitySetReminderBinding binding;
@@ -79,23 +81,25 @@ public class SetReminderActivity extends AppCompatActivity implements TimePicker
             @Override
             public void onClick(View v) {
                 String message = binding.input.getText().toString();
+                String title = binding.reminderTitle.getText().toString();
                 String name = binding.reminderSpinner.getSelectedItem().toString();
-                String personName = (String) binding.reminderSpinner.getSelectedItem();
+
                 if (binding.setDate.getText().toString().isEmpty() && binding.setTime.getText().toString().isEmpty()
                         && binding.input.getText().toString().isEmpty()
-                        && binding.reminderSpinner.getSelectedItem().toString().isEmpty()) {
+                        && binding.reminderSpinner.getSelectedItem().toString().isEmpty()
+                        && binding.reminderTitle.getText().toString().isEmpty()) {
                     Toast.makeText(getApplicationContext(), "please provide all info. carefully", Toast.LENGTH_SHORT).show();
                 } else {
                     reminderModel = new ReminderModel();
-                    if (personName.equalsIgnoreCase("select name")) {
+                    if (name.equalsIgnoreCase("select name")) {
                         Toast.makeText(getApplicationContext(), "please select a name", Toast.LENGTH_SHORT).show();
                     }
-                    long range = 1234567L;
-                    Random r = new Random();
-                    long number = (long) (r.nextDouble() * range);
-                    reminderModel.id = number;
+                    String uuid = UUID.randomUUID().toString();
+                    reminderModel.userID = uuid;
                     reminderModel.message = message;
                     reminderModel.user = name;
+                    reminderModel.title = title;
+                    Log.i("abc1234", reminderModel.title);
                     SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmss");
                     reminderModel.sendingTime = sdf.format(new Date());
                     reminderModel.time = time;
@@ -105,6 +109,7 @@ public class SetReminderActivity extends AppCompatActivity implements TimePicker
                     reference.push().setValue(reminderModel);
                     binding.input.setText("");
                     binding.input.setHint("Type a reminder");
+                    binding.reminderTitle.setHint("Type a title");
 
                     startActivity(new Intent(SetReminderActivity.this, RemindersActivity.class));
                 }

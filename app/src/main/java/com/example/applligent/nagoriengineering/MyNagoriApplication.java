@@ -33,6 +33,7 @@ public class MyNagoriApplication extends Application {
         super.onCreate();
         FirebaseApp.initializeApp(this);
         FirebaseMessaging.getInstance().subscribeToTopic("notifications");
+        FirebaseMessaging.getInstance().subscribeToTopic("reminders");
         myNagoriApplication = this;
         createNotificationChannels();
     }

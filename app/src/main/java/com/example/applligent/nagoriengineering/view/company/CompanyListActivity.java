@@ -1,20 +1,14 @@
-package com.example.applligent.nagoriengineering.view;
+package com.example.applligent.nagoriengineering.view.company;
 
-import android.content.Intent;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.design.widget.NavigationView;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.SearchView;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.view.View;
 
-import com.example.applligent.nagoriengineering.About;
-import com.example.applligent.nagoriengineering.Copyright;
 import com.example.applligent.nagoriengineering.ItemAdapter;
 import com.example.applligent.nagoriengineering.MyNagoriApplication;
 import com.example.applligent.nagoriengineering.R;

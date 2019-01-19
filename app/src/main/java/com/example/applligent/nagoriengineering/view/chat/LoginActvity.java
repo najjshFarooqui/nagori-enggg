@@ -1,4 +1,4 @@
-package com.example.applligent.nagoriengineering.view;
+package com.example.applligent.nagoriengineering.view.chat;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
@@ -16,6 +16,8 @@ import android.widget.Toast;
 
 import com.example.applligent.nagoriengineering.R;
 import com.example.applligent.nagoriengineering.model.User;
+import com.example.applligent.nagoriengineering.view.StartActivity;
+import com.example.applligent.nagoriengineering.view.company.MainActivity;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;

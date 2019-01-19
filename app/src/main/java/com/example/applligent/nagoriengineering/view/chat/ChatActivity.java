@@ -1,4 +1,4 @@
-package com.example.applligent.nagoriengineering.view;
+package com.example.applligent.nagoriengineering.view.chat;
 
 import android.arch.lifecycle.Observer;
 import android.content.Intent;
@@ -20,6 +20,7 @@ import com.example.applligent.nagoriengineering.MyNagoriApplication;
 import com.example.applligent.nagoriengineering.R;
 import com.example.applligent.nagoriengineering.dao.ChatDao;
 import com.example.applligent.nagoriengineering.model.Chat;
+import com.example.applligent.nagoriengineering.view.StartActivity;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;

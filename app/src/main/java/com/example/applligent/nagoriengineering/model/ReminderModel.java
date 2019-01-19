@@ -12,5 +12,7 @@ public class ReminderModel {
         public String time;
         public String date;
         public String sendingTime;
+    public String title;
+    public String userID;
 }
 

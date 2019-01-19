@@ -44,12 +44,14 @@ public class ReminderAdapter extends RecyclerView.Adapter<ReminderAdapter.ItemHo
         TextView message;
         TextView time;
         TextView name;
+        TextView title;
 
         public ItemHolder(@NonNull final View itemView) {
             super(itemView);
             name = itemView.findViewById(R.id.name);
             message = itemView.findViewById(R.id.message_reminder);
             time = itemView.findViewById(R.id.time_reminder);
+            title = itemView.findViewById(R.id.title);
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -62,9 +64,12 @@ public class ReminderAdapter extends RecyclerView.Adapter<ReminderAdapter.ItemHo
         }
 
         protected void bindTo(ReminderModel reminders) {
+            title.setText(reminders.title);
             name.setText(reminders.user);
             message.setText(reminders.message);
             time.setText(reminders.sendingTime);
+
+
         }
     }
 

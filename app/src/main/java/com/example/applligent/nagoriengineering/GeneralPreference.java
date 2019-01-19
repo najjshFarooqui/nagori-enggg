@@ -50,4 +50,16 @@ public class GeneralPreference {
     }
 
 
+    public static void setAdmin(Context context, String admin) {
+        SharedPreferences sharedPreferences = context.getSharedPreferences(FILE_NAME, Context.MODE_PRIVATE);
+        sharedPreferences.edit().putString("user_admin", admin).apply();
+    }
+
+    public static String getAdmin(Context context) {
+        SharedPreferences sharedPreferences = context.getSharedPreferences(FILE_NAME, Context.MODE_PRIVATE);
+        return sharedPreferences.getString("user_admin", "");
+    }
+
+
+
 }

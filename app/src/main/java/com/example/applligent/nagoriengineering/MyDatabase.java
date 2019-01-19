@@ -14,7 +14,7 @@ import com.example.applligent.nagoriengineering.model.ReminderModel;
 import com.example.applligent.nagoriengineering.model.SubItem;
 import com.example.applligent.nagoriengineering.model.User;
 
-@Database(entities = {Item.class, SubItem.class, Chat.class, User.class, ReminderModel.class}, version = 9)
+@Database(entities = {Item.class, SubItem.class, Chat.class, User.class, ReminderModel.class}, version = 11)
 public abstract class MyDatabase extends RoomDatabase {
     public abstract ItemDao itemDao();
     public abstract SubItemDao subItemDao();

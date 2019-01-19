@@ -7,7 +7,11 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+
 import com.example.applligent.nagoriengineering.R;
+import com.example.applligent.nagoriengineering.view.chat.HomeActivity;
+import com.example.applligent.nagoriengineering.view.chat.LoginActvity;
+import com.example.applligent.nagoriengineering.view.chat.RegisterActivity;
 
 public class StartActivity extends AppCompatActivity {
     @Override

@@ -1,4 +1,4 @@
-package com.example.applligent.nagoriengineering.view;
+package com.example.applligent.nagoriengineering.view.company;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;

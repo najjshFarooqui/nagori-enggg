@@ -14,25 +14,25 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".view.HomeActivity">
+        <activity android:name=".view.chat.HomeActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".view.CompanyListActivity" />
-        <activity android:name=".view.DetailsActivity" />
+        <activity android:name=".view.company.CompanyListActivity" />
+        <activity android:name=".view.company.DetailsActivity" />
         <activity android:name=".Copyright" />
         <activity android:name=".About" />
-        <activity android:name=".view.PartsInfoActivity" />
-        <activity android:name=".view.CompanyDetailsActivity" />
-        <activity android:name=".view.ServiceInfoActivity" />
-        <activity android:name=".view.ChatActivity" />
-        <activity android:name=".view.LoginActvity" />
-        <activity android:name=".view.RegisterActivity" />
+        <activity android:name=".view.company.PartsInfoActivity" />
+        <activity android:name=".view.company.CompanyDetailsActivity" />
+        <activity android:name=".view.company.ServiceInfoActivity" />
+        <activity android:name=".view.chat.ChatActivity" />
+        <activity android:name=".view.chat.LoginActvity" />
+        <activity android:name=".view.chat.RegisterActivity" />
         <activity android:name=".view.StartActivity" />
-        <activity android:name=".view.MainActivity" />
+        <activity android:name=".view.company.MainActivity" />
 
         <service android:name=".service.MessageService">
             <intent-filter>
@@ -47,12 +47,14 @@
             android:name="com.google.firebase.messaging.default_notification_color"
             android:resource="@color/colorAccent" />
 
-        <activity android:name=".view.SetReminderActivity" />
+        <activity android:name=".view.reminders.SetReminderActivity" />
 
         <receiver android:name=".service.AlarmReciever" />
 
         <activity android:name=".view.AlarmActivity" />
-        <activity android:name=".view.RemindersActivity"></activity>
+        <activity android:name=".view.reminders.RemindersActivity" />
+        <activity android:name=".view.reminders.GetReminderActivity" />
+        <activity android:name=".view.reminders.ShowReminders"></activity>
     </application>
 
 </manifest>

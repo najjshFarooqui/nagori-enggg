@@ -1,4 +1,4 @@
-package com.example.applligent.nagoriengineering.view;
+package com.example.applligent.nagoriengineering.view.company;
 
 import android.content.Intent;
 import android.os.Bundle;

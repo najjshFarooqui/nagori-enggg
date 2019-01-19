@@ -1,4 +1,4 @@
-package com.example.applligent.nagoriengineering.view;
+package com.example.applligent.nagoriengineering.view.company;
 
 import android.content.Intent;
 import android.databinding.DataBindingUtil;
@@ -13,9 +13,7 @@ import com.example.applligent.nagoriengineering.MyNagoriApplication;
 import com.example.applligent.nagoriengineering.R;
 import com.example.applligent.nagoriengineering.dao.ItemDao;
 import com.example.applligent.nagoriengineering.databinding.ActivityDetailsBinding;
-import com.example.applligent.nagoriengineering.databinding.ActivityServiceInfoBinding;
 import com.example.applligent.nagoriengineering.model.Item;
-import com.example.applligent.nagoriengineering.model.SubItem;
 
 public class DetailsActivity extends AppCompatActivity {
     DrawerLayout drawerLayout;

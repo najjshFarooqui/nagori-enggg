@@ -1,12 +1,9 @@
-package com.example.applligent.nagoriengineering.service;
+package com.example.applligent.nagoriengineering;
 
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
 import android.widget.DatePicker;
 import android.widget.TimePicker;
-
-import com.example.applligent.nagoriengineering.model.ReminderModel;
-import com.google.firebase.database.FirebaseDatabase;
 
 public class ServiceReminder implements TimePickerDialog.OnTimeSetListener ,DatePickerDialog.OnDateSetListener {
 public String time ;

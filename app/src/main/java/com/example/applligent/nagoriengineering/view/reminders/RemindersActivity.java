@@ -1,11 +1,13 @@
-package com.example.applligent.nagoriengineering.view;
+package com.example.applligent.nagoriengineering.view.reminders;
 
 import android.arch.lifecycle.Observer;
+import android.content.Intent;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
+import android.view.View;
 
 import com.example.applligent.nagoriengineering.MyNagoriApplication;
 import com.example.applligent.nagoriengineering.R;
@@ -33,6 +35,12 @@ public class RemindersActivity extends AppCompatActivity {
                 binding.remindersView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
                 reminderAdapter = new ReminderAdapter(reminderModelList);
                 binding.remindersView.setAdapter(reminderAdapter);
+                binding.remindersView.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        startActivity(new Intent(RemindersActivity.this, GetReminderActivity.class));
+                    }
+                });
             }
         });
 

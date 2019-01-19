@@ -1,4 +1,4 @@
-package com.example.applligent.nagoriengineering.view;
+package com.example.applligent.nagoriengineering.view.company;
 
 import android.databinding.DataBindingUtil;
 import android.graphics.Color;

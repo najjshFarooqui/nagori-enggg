@@ -20,6 +20,15 @@
         android:textSize="24dp" />
 
     <TextView
+        android:id="@+id/title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@id/message_reminder"
+        android:layout_toRightOf="@+id/message_reminder"
+
+        android:text="title" />
+
+    <TextView
         android:id="@+id/time_reminder"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
