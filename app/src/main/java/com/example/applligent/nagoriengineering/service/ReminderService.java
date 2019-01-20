@@ -1,8 +1,11 @@
 package com.example.applligent.nagoriengineering.service;
 
+import android.support.v4.app.NotificationCompat;
+import android.support.v4.app.NotificationManagerCompat;
 import android.util.Log;
 
 import com.example.applligent.nagoriengineering.MyNagoriApplication;
+import com.example.applligent.nagoriengineering.R;
 import com.example.applligent.nagoriengineering.dao.ReminderDao;
 import com.example.applligent.nagoriengineering.model.Chat;
 import com.example.applligent.nagoriengineering.model.ReminderModel;
@@ -53,7 +56,23 @@ public class ReminderService extends FirebaseMessagingService {
             List<ReminderModel> reminderModelList = new ArrayList();
             reminderModelList.add(reminderModel);
             reminderDao.insert(reminderModel);
+            showNotification(title, message);
 
         }
     }
+
+    public void showNotification(String title, String message) {
+        NotificationCompat.Builder builder = new NotificationCompat.Builder(this, MyNagoriApplication.reminderChannel)
+                .setContentTitle(title)
+                .setSmallIcon(R.drawable.turbine)
+                .setAutoCancel(true)
+                .setContentText(message);
+
+        NotificationManagerCompat manager = NotificationManagerCompat.from(this);
+        manager.notify(999, builder.build());
+    }
 }
+
+
+
+

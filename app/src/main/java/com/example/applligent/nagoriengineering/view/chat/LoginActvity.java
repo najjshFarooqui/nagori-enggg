@@ -14,10 +14,12 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.example.applligent.nagoriengineering.GeneralPreference;
+import com.example.applligent.nagoriengineering.MyNagoriApplication;
 import com.example.applligent.nagoriengineering.R;
+import com.example.applligent.nagoriengineering.dao.UserDao;
 import com.example.applligent.nagoriengineering.model.User;
 import com.example.applligent.nagoriengineering.view.StartActivity;
-import com.example.applligent.nagoriengineering.view.company.MainActivity;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
@@ -31,19 +33,20 @@ import java.util.ArrayList;
 
 
 public class LoginActvity extends AppCompatActivity {
-    private EditText userNAme;
+    UserDao userDao;
     private EditText userPassword;
     private Button login;
     private FirebaseAuth mAuth;
     private static final String TAG = "login success";
     private ProgressDialog progress;
-
+    private EditText userName;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login_actvity);
         progress = new ProgressDialog(this);
+        userDao = MyNagoriApplication.getDatabase().registerDao();
         ActionBar actionBar = getSupportActionBar();
         if (actionBar != null) {
             actionBar.setTitle("Login Page");
@@ -53,13 +56,13 @@ public class LoginActvity extends AppCompatActivity {
         }
         mAuth = FirebaseAuth.getInstance();
 
-        userNAme = (EditText) findViewById(R.id.userName);
+        userName = (EditText) findViewById(R.id.userName);
         userPassword = (EditText) findViewById(R.id.userPassword);
         login = (Button) findViewById(R.id.signInButton);
         login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String userName = userNAme.getText().toString();
+                String userName = LoginActvity.this.userName.getText().toString();
                 String password = userPassword.getText().toString();
                 if (!TextUtils.isEmpty(userName) || !TextUtils.isEmpty(password)) {
                     progress.setTitle("login in progress");
@@ -73,7 +76,7 @@ public class LoginActvity extends AppCompatActivity {
 
     }
 
-    private void loginUser(String userName, final String password) {
+    private void loginUser(final String userName, final String password) {
         mAuth.signInWithEmailAndPassword(userName, password)
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                     @Override
@@ -81,8 +84,9 @@ public class LoginActvity extends AppCompatActivity {
                         if (task.isSuccessful()) {
                             Log.d(TAG, "signInWithEmail:success");
                             progress.dismiss();
+                            GeneralPreference.setUserEmail(getApplicationContext(), userName);
                             temp();
-                            Intent intent = new Intent(LoginActvity.this, MainActivity.class);
+                            Intent intent = new Intent(LoginActvity.this, ChatActivity.class);
                             intent.addFlags(intent.FLAG_ACTIVITY_NEW_TASK | intent.FLAG_ACTIVITY_CLEAR_TASK);
                             startActivity(intent);
                             finish();
@@ -103,25 +107,12 @@ public class LoginActvity extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 ArrayList<User> users = new ArrayList<>();
-                boolean isRegistered = false;
                 for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
                     User user = snapshot.getValue(User.class);
                     users.add(user);
-                    if (user.email == FirebaseAuth.getInstance().getCurrentUser().getEmail())
-                        isRegistered = true;
-                }
-
-                if (!isRegistered) {
-                    startActivity(new Intent(LoginActvity.this, RegisterActivity.class));
+                    userDao.insertAll(users);
 
                 }
-
-
-                progress.dismiss();
-                Intent intent = new Intent(LoginActvity.this, MainActivity.class);
-                intent.addFlags(intent.FLAG_ACTIVITY_NEW_TASK | intent.FLAG_ACTIVITY_CLEAR_TASK);
-                startActivity(intent);
-                finish();
             }
 
             @Override

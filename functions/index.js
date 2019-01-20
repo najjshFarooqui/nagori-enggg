@@ -16,7 +16,8 @@ console.log(valueObject.message);
             'message': valueObject.message,
 			'displayName': valueObject.displayName,
 			'timeStamp': valueObject.timeStamp,
-			'userId': valueObject.userId
+			'userId': valueObject.userId,
+			'email' : valueObject.email
         }
     };
 	
