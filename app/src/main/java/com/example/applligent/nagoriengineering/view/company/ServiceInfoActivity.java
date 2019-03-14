@@ -25,20 +25,20 @@ public class ServiceInfoActivity extends AppCompatActivity {
         binding = DataBindingUtil.setContentView(this, R.layout.activity_service_info);
         partsId = getIntent().getIntExtra("parts_info", -1);
         item=itemDao.get(partsId);
-        binding.tcPartLabel.setText(item.telPartNumber);
-        binding.alphaLabel.setText(item.orientationAlpha);
-        binding.betaLabel.setText(item.orientationBeta);
-        binding.strokingPrLabel.setText(item.strPre);
-        binding.settingPrLabel.setText(item.settingPre);
-        binding.liftLabel.setText(item.lift);
-        binding.remarksLabel.setText(item.reman);
+        binding.tcPartLabel.setText(item.getTelPartNumber());
+        binding.alphaLabel.setText(item.getOrientationAlpha());
+        binding.betaLabel.setText(item.getOrientationBeta());
+        binding.strokingPrLabel.setText(item.getStrPre());
+        binding.settingPrLabel.setText(item.getSettingPre());
+        binding.liftLabel.setText(item.getLift());
+        binding.remarksLabel.setText(item.getReman());
 
         binding.button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(),PartsInfoActivity.class);
 
-                intent.putExtra("tel_part_number", item.telPartNumber);
+                intent.putExtra("tel_part_number", item.getTelPartNumber());
                 startActivity(intent);
 
             }

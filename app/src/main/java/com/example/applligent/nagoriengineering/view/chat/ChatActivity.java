@@ -60,6 +60,7 @@ public class ChatActivity extends AppCompatActivity {
                 messageView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
                 messageAdapter = new MessageAdapter(messages);
                 messageView.setAdapter(messageAdapter);
+
             }
         });
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
@@ -67,21 +68,21 @@ public class ChatActivity extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                EditText message = (EditText) findViewById(R.id.input);
+                EditText message = (EditText) findViewById(R.id.input_message);
                 Chat chatMessages = new Chat();
-                chatMessages.message = message.getText().toString();
+                chatMessages.setMessage(message.getText().toString());
                 FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser();
 
 
-                chatMessages.displayName = GeneralPreference.getNameLoaded(getApplicationContext());
-                chatMessages.userId = GeneralPreference.getUserId(getApplicationContext());
+                chatMessages.setDisplayName(GeneralPreference.getNameLoaded(getApplicationContext()));
+                chatMessages.setUserId(GeneralPreference.getUserId(getApplicationContext()));
                 SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");
                 SimpleDateFormat timeHourMin = new SimpleDateFormat("HH:mm");
-                chatMessages.timeStamp = sdf.format(new Date());
-                chatMessages.hourMinute = timeHourMin.format(new Date());
+                chatMessages.setTimeStamp(sdf.format(new Date()));
+                chatMessages.setHourMinute(timeHourMin.format(new Date()));
                 List<Chat> chatMessagesList = new ArrayList<>();
                 chatMessagesList.add(chatMessages);
-                if (GeneralPreference.getUserId(getApplicationContext()) != chatMessages.userId) {
+                if (GeneralPreference.getUserId(getApplicationContext()) != chatMessages.getUserId()) {
                     chatDao.insertAll(chatMessagesList);
                 }
 
@@ -89,6 +90,8 @@ public class ChatActivity extends AppCompatActivity {
                 reference.push().setValue(chatMessages);
                 message.setText("");
                 message.setHint("Type a message");
+
+
             }
         });
 

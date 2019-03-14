@@ -46,13 +46,13 @@ public class ReminderService extends FirebaseMessagingService {
             userID = remoteMessage.getData().get("userID");
 
             ReminderModel reminderModel = new ReminderModel();
-            reminderModel.message = message;
-            reminderModel.userID = userID;
-            reminderModel.user = user;
-            reminderModel.date = date;
-            reminderModel.time = time;
-            reminderModel.title = title;
-            reminderModel.sendingTime = sendingTime;
+            reminderModel.setMessage(message);
+            reminderModel.setUserID(userID);
+            reminderModel.setUser(user);
+            reminderModel.setDate(date);
+            reminderModel.setTime(time);
+            reminderModel.setTitle(title);
+            reminderModel.setSendingTime(sendingTime);
             List<ReminderModel> reminderModelList = new ArrayList();
             reminderModelList.add(reminderModel);
             reminderDao.insert(reminderModel);

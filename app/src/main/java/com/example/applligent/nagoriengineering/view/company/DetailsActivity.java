@@ -45,7 +45,7 @@ public class DetailsActivity extends AppCompatActivity {
             public void onClick(View v) {
                 item = itemDao.get(itemId);
                 Intent intent = new Intent(getApplicationContext(), PartsInfoActivity.class);
-                intent.putExtra("tel_part_number", item.telPartNumber);
+                intent.putExtra("tel_part_number", item.getTelPartNumber());
                 startActivity(intent);
 
             }
@@ -60,18 +60,18 @@ public class DetailsActivity extends AppCompatActivity {
 
     public void showDetails() {
         item = itemDao.get(itemId);
-        binding.telPartLabel.setText(item.telPartNumber);
-        binding.oemPartLabel.setText(item.oem);
-        binding.engineLabel.setText(item.engine);
-        binding.applicationLabel.setText(item.application);
-        binding.mrpLabel.setText(Float.toString(item.mrp));
-        binding.telPartLabel.setText(item.telPartNumber);
-        binding.alphaLabel.setText(Integer.toString(item.orientationAlpha));
-        binding.betaLabel.setText(Integer.toString(item.orientationBeta));
-        binding.strokingLabel.setText(item.strPre);
-        binding.settingPrLabel.setText(item.settingPre);
-        binding.liftLabel.setText(item.lift);
-        binding.remarksLabel.setText(item.reman);
+        binding.telPartLabel.setText(item.getTelPartNumber());
+        binding.oemPartLabel.setText(item.getOem());
+        binding.engineLabel.setText(item.getEngine());
+        binding.applicationLabel.setText(item.getApplication());
+        binding.mrpLabel.setText(Float.toString(item.getMrp()));
+        binding.telPartLabel.setText(item.getTelPartNumber());
+        binding.alphaLabel.setText(Integer.toString(item.getOrientationAlpha()));
+        binding.betaLabel.setText(Integer.toString(item.getOrientationBeta()));
+        binding.strokingLabel.setText(item.getStrPre());
+        binding.settingPrLabel.setText(item.getSettingPre());
+        binding.liftLabel.setText(item.getLift());
+        binding.remarksLabel.setText(item.getReman());
     }
 
     public void showServiceInfo(){

@@ -55,18 +55,18 @@ public class MainActivity extends AppCompatActivity {
 
                 // Read the data and store it in the WellData POJO.
                 Item items = new Item();
-                items.sNo = Long.parseLong(tokens[0].trim());
-                items.oem = (tokens[1].trim());
-                items.telPartNumber = tokens[2].trim();
-                items.engine = (tokens[3].trim());
-                items.application = (tokens[4].trim());
-                items.mrp = Float.parseFloat(tokens[5].trim());
-                items.orientationAlpha = Integer.parseInt(tokens[6].trim());
-                items.orientationBeta = Integer.parseInt(tokens[7].trim());
+                items.setSNo(Long.parseLong(tokens[0].trim()));
+                items.setOem((tokens[1].trim()));
+                items.setTelPartNumber(tokens[2].trim());
+                items.setEngine((tokens[3].trim()));
+                items.setApplication((tokens[4].trim()));
+                items.setMrp(Float.parseFloat(tokens[5].trim()));
+                items.setOrientationAlpha(Integer.parseInt(tokens[6].trim()));
+                items.setOrientationBeta(Integer.parseInt(tokens[7].trim()));
                 try {
-                    items.strPre = (tokens[8].trim());
-                    items.settingPre = (tokens[9].trim());
-                    items.lift = (tokens[10].trim());
+                    items.setStrPre((tokens[8].trim()));
+                    items.setSettingPre((tokens[9].trim()));
+                    items.setLift((tokens[10].trim()));
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
@@ -81,7 +81,7 @@ public class MainActivity extends AppCompatActivity {
         }
         List<Item> list = itemDao.getAll();
         for (int i = 0; i < list.size(); i++) {
-            Log.d("abc123", list.get(i).application);
+            Log.d("abc123", list.get(i).getApplication());
         }
     }
 

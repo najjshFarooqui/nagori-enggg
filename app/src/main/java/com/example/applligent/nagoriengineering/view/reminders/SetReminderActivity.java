@@ -95,15 +95,15 @@ public class SetReminderActivity extends AppCompatActivity implements TimePicker
                         Toast.makeText(getApplicationContext(), "please select a name", Toast.LENGTH_SHORT).show();
                     }
                     String uuid = UUID.randomUUID().toString();
-                    reminderModel.userID = uuid;
-                    reminderModel.message = message;
-                    reminderModel.user = name;
-                    reminderModel.title = title;
-                    Log.i("abc1234", reminderModel.title);
+                    reminderModel.setUserID(uuid);
+                    reminderModel.setMessage(message);
+                    reminderModel.setUser(name);
+                    reminderModel.setTitle(title);
+                    Log.i("abc1234", reminderModel.getTitle());
                     SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmss");
-                    reminderModel.sendingTime = sdf.format(new Date());
-                    reminderModel.time = time;
-                    reminderModel.date = date;
+                    reminderModel.setSendingTime(sdf.format(new Date()));
+                    reminderModel.setTime(time);
+                    reminderModel.setDate(date);
                     reminderDao.insert(reminderModel);
                     reference = FirebaseDatabase.getInstance().getReference().child("reminders");
                     reference.push().setValue(reminderModel);

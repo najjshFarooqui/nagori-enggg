@@ -1,6 +1,5 @@
 package com.example.applligent.nagoriengineering;
 
-import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -31,6 +30,7 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.ItemHold
     @Override
     public void onBindViewHolder(@NonNull MessageAdapter.ItemHolder itemHolder, int i) {
         itemHolder.bindTo(messages.get(i));
+
     }
 
     @Override
@@ -42,7 +42,6 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.ItemHold
         TextView userName;
         TextView message;
         TextView time;
-        Context context;
 
         public ItemHolder(@NonNull View itemView) {
             super(itemView);
@@ -52,9 +51,9 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.ItemHold
         }
 
         protected void bindTo(Chat chats) {
-           userName.setText(chats.displayName);
-           message.setText(chats.message);
-            time.setText(chats.hourMinute);
+            userName.setText(chats.getDisplayName());
+            message.setText(chats.getMessage());
+            time.setText(chats.getHourMinute());
         }
     }
 

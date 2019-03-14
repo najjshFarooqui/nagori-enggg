@@ -15,4 +15,6 @@
     <color name="table_row">#DFEFEE</color>
     <color name="new_color">#F6F6F6</color>
     <color name="user_color">#e2ffc9</color>
+    <color name="chat_left">#FFFFFF</color>
+    <color name="chat_right">#E1FFC7</color>
 </resources>

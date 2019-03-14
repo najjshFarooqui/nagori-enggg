@@ -88,7 +88,7 @@ public class CompanyDetailsActivity extends AppCompatActivity {
                     //intent.putExtra("tel_part_number", itemList.get(v.getId()).telPartNumber);
                     int rowId = v.getId();
                     Item item = itemList.get(rowId);
-                    intent.putExtra("item_id", item.id);
+                    intent.putExtra("item_id", item.getId());
                     startActivity(intent);
                 }
             });
@@ -98,18 +98,18 @@ public class CompanyDetailsActivity extends AppCompatActivity {
                     TableRow.LayoutParams.FILL_PARENT,
                     TableRow.LayoutParams.WRAP_CONTENT));
             Item item = itemList.get(i);
-            row.addView(getRowLabel(i,i * 1, item.sNo + ""));
-            row.addView(getRowLabel(i,i * 2, item.telPartNumber));
-            row.addView(getRowLabel(i,i * 3, item.oem));
-            row.addView(getRowLabel(i,i * 4, item.engine));
-            row.addView(getRowLabel(i,i * 5, item.application));
-            row.addView(getRowLabel(i,i * 6, Float.toString(item.mrp)));
-            row.addView(getRowLabel(i,i * 7, Integer.toString(item.orientationAlpha)));
-            row.addView(getRowLabel(i,i * 8, Integer.toString(item.orientationBeta)));
-            row.addView(getRowLabel(i,i * 9, item.strPre));
-            row.addView(getRowLabel(i,i * 10, item.settingPre));
-            row.addView(getRowLabel(i,i * 11, item.lift));
-            row.addView(getRowLabel(i,i * 12, item.reman));
+            row.addView(getRowLabel(i, i * 1, item.getSNo() + ""));
+            row.addView(getRowLabel(i, i * 2, item.getTelPartNumber()));
+            row.addView(getRowLabel(i, i * 3, item.getOem()));
+            row.addView(getRowLabel(i, i * 4, item.getEngine()));
+            row.addView(getRowLabel(i, i * 5, item.getApplication()));
+            row.addView(getRowLabel(i, i * 6, Float.toString(item.getMrp())));
+            row.addView(getRowLabel(i, i * 7, Integer.toString(item.getOrientationAlpha())));
+            row.addView(getRowLabel(i, i * 8, Integer.toString(item.getOrientationBeta())));
+            row.addView(getRowLabel(i, i * 9, item.getStrPre()));
+            row.addView(getRowLabel(i, i * 10, item.getSettingPre()));
+            row.addView(getRowLabel(i, i * 11, item.getLift()));
+            row.addView(getRowLabel(i, i * 12, item.getReman()));
 
             binding.tableLayout.addView(row, new TableLayout.LayoutParams(
                     TableLayout.LayoutParams.FILL_PARENT,

@@ -44,11 +44,11 @@ public class MessageService extends FirebaseMessagingService {
 
 
             chatData = new Chat();
-            chatData.message = dataMessage;
-            chatData.displayName = dataUser;
-            chatData.hourMinute = dataTime;
+            chatData.setMessage(dataMessage);
+            chatData.setDisplayName(dataUser);
+            chatData.setHourMinute(dataTime);
 
-            chatData.userId = dataId;
+            chatData.setUserId(dataId);
             List<Chat> chatList = new ArrayList();
             chatList.add(chatData);
             chatDao.insertAll(chatList);
