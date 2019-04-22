@@ -49,7 +49,7 @@ public class SetReminderActivity extends AppCompatActivity implements TimePicker
         super.onCreate(savedInstanceState);
         binding = DataBindingUtil.setContentView(this, R.layout.activity_set_reminder);
         mAuth = FirebaseAuth.getInstance();
-        reminderDao = MyNagoriApplication.getDatabase().reminderDao();
+        reminderDao = MyNagoriApplication.Companion.getDatabase(getApplicationContext()).reminderDao();
         ActionBar actionBar = getSupportActionBar();
         if (actionBar != null) {
             actionBar.setTitle("Set a Reminder");

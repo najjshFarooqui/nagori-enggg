@@ -3,8 +3,11 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:layout_marginTop="2dp"
-    android:background="#E1FFC7"
+    android:layout_marginLeft="16dp"
+    android:layout_marginTop="4dp"
+    android:layout_marginRight="16dp"
+    android:background="@drawable/chat_bubble_right"
+    android:elevation="4dp"
     android:orientation="vertical">
 
 
@@ -13,7 +16,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
+        android:layout_marginLeft="8dp"
         android:text="user"
+        android:textColor="@color/table_header"
         android:textStyle="normal" />
 
     <TextView
@@ -22,20 +27,22 @@
         android:layout_height="wrap_content"
         android:layout_alignRight="@+id/message_text"
         android:layout_alignParentRight="true"
+        android:layout_alignParentBottom="true"
+        android:textColor="@color/table_header"
         android:layout_marginTop="25dp"
-
-        android:layout_marginRight="128dp"
         android:text="time" />
 
     <TextView
-        android:text="message"
-        android:textColor="#000"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="100dp"
         android:layout_height="wrap_content"
         android:layout_below="@+id/message_user"
         android:layout_alignParentStart="true"
         android:layout_marginTop="5dp"
+        android:text="message najish"
         android:id="@+id/message_text"
+        android:textColor="@color/primary_text"
         android:textAppearance="@style/TextAppearance.AppCompat.Body1"
         android:textSize="18sp" />
 

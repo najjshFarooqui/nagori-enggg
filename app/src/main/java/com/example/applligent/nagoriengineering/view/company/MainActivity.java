@@ -30,8 +30,8 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        itemDao = MyNagoriApplication.getDatabase().itemDao();
-        subItemDao = MyNagoriApplication.getDatabase().subItemDao();
+        itemDao = MyNagoriApplication.Companion.getDatabase(getApplicationContext()).itemDao();
+        subItemDao = MyNagoriApplication.Companion.getDatabase(getApplicationContext()).subItemDao();
         if (!GeneralPreference.getDataLoaded(this)) {
             readPartsCsv();
             readSubPartsCsv();

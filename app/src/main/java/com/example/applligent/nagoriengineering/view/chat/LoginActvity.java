@@ -46,7 +46,7 @@ public class LoginActvity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login_actvity);
         progress = new ProgressDialog(this);
-        userDao = MyNagoriApplication.getDatabase().registerDao();
+        userDao = MyNagoriApplication.Companion.getDatabase(getApplicationContext()).registerDao();
         ActionBar actionBar = getSupportActionBar();
         if (actionBar != null) {
             actionBar.setTitle("Login Page");
@@ -56,9 +56,9 @@ public class LoginActvity extends AppCompatActivity {
         }
         mAuth = FirebaseAuth.getInstance();
 
-        userName = (EditText) findViewById(R.id.userName);
-        userPassword = (EditText) findViewById(R.id.userPassword);
-        login = (Button) findViewById(R.id.signInButton);
+        userName = findViewById(R.id.userlog);
+        userPassword = findViewById(R.id.passlog);
+        login = findViewById(R.id.login);
         login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -87,7 +87,7 @@ public class LoginActvity extends AppCompatActivity {
                             GeneralPreference.setUserEmail(getApplicationContext(), userName);
                             temp();
                             Intent intent = new Intent(LoginActvity.this, ChatActivity.class);
-                            intent.addFlags(intent.FLAG_ACTIVITY_NEW_TASK | intent.FLAG_ACTIVITY_CLEAR_TASK);
+                            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                             startActivity(intent);
                             finish();
                         } else {

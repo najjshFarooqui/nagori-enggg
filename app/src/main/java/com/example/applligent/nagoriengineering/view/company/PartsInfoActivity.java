@@ -41,7 +41,7 @@ public class PartsInfoActivity extends AppCompatActivity {
         }
 
 
-        subItemDao = MyNagoriApplication.getDatabase().subItemDao();
+        subItemDao = MyNagoriApplication.Companion.getDatabase(getApplicationContext()).subItemDao();
         binding = DataBindingUtil.setContentView(this, R.layout.activity_parts_info);
         telPart = getIntent().getStringExtra("tel_part_number");
         binding.tcPartLabel.setText("TC PART NO: " + telPart);

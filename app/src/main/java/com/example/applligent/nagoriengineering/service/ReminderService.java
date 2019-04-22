@@ -30,7 +30,7 @@ public class ReminderService extends FirebaseMessagingService {
         String userID = null;
         String sendingTime = null;
         String title = null;
-        reminderDao = MyNagoriApplication.getDatabase().reminderDao();
+        reminderDao = MyNagoriApplication.Companion.getDatabase(getApplicationContext()).reminderDao();
 
         // Check if message contains a notification payload.
 
@@ -62,7 +62,7 @@ public class ReminderService extends FirebaseMessagingService {
     }
 
     public void showNotification(String title, String message) {
-        NotificationCompat.Builder builder = new NotificationCompat.Builder(this, MyNagoriApplication.reminderChannel)
+        NotificationCompat.Builder builder = new NotificationCompat.Builder(this, MyNagoriApplication.Companion.getReminderChannel())
                 .setContentTitle(title)
                 .setSmallIcon(R.drawable.turbine)
                 .setAutoCancel(true)

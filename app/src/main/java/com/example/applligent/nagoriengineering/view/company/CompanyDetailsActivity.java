@@ -33,7 +33,7 @@ public class CompanyDetailsActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        itemDao = MyNagoriApplication.getDatabase().itemDao();
+        itemDao = MyNagoriApplication.Companion.getDatabase(getApplicationContext()).itemDao();
         binding = DataBindingUtil.setContentView(this, R.layout.activity_company_details);
         oem = getIntent().getStringExtra("oem");
         ActionBar actionBar = getSupportActionBar();

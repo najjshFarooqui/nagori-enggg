@@ -30,8 +30,8 @@ public class MessageService extends FirebaseMessagingService {
         String dataTime = null;
         String dataId = null;
         String email = null;
-        chatDao = MyNagoriApplication.getDatabase().chatDao();
-        userDao = MyNagoriApplication.getDatabase().registerDao();
+        chatDao = MyNagoriApplication.Companion.getDatabase(getApplicationContext()).chatDao();
+        userDao = MyNagoriApplication.Companion.getDatabase(getApplicationContext()).registerDao();
 
         if (remoteMessage.getData().size() > 0) {
             Log.d(TAG, "Message data payload: " + remoteMessage.getData().get("message"));
@@ -67,7 +67,7 @@ public class MessageService extends FirebaseMessagingService {
     }
 
     public void showNotification(String title, String message) {
-        NotificationCompat.Builder builder = new NotificationCompat.Builder(this, MyNagoriApplication.chatChannel)
+        NotificationCompat.Builder builder = new NotificationCompat.Builder(this, MyNagoriApplication.Companion.getChatChannel())
                 .setContentTitle(title)
                 .setSmallIcon(R.drawable.turbine)
                 .setAutoCancel(true)

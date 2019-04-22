@@ -51,7 +51,7 @@ public class RegisterActivity extends AppCompatActivity {
             actionBar.setDisplayHomeAsUpEnabled(true);
         }
 
-        registerDao = MyNagoriApplication.getDatabase().registerDao();
+        registerDao = MyNagoriApplication.Companion.getDatabase(getApplicationContext()).registerDao();
         progressBar = new ProgressDialog(this);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 

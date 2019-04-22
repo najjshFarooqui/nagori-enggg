@@ -37,7 +37,7 @@ public class DetailsActivity extends AppCompatActivity {
             actionBar.setDisplayShowTitleEnabled(true);
             actionBar.setDisplayHomeAsUpEnabled(true);
         }
-        itemDao = MyNagoriApplication.getDatabase().itemDao();
+        itemDao = MyNagoriApplication.Companion.getDatabase(getApplicationContext()).itemDao();
         itemId = getIntent().getLongExtra("item_id", -1);
         showDetails();
         binding.parts.setOnClickListener(new View.OnClickListener() {

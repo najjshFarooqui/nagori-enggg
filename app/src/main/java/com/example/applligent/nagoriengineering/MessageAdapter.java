@@ -54,6 +54,7 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.ItemHold
             userName.setText(chats.getDisplayName());
             message.setText(chats.getMessage());
             time.setText(chats.getHourMinute());
+
         }
     }
 

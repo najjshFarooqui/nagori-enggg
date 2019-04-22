@@ -28,7 +28,7 @@ public class RemindersActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = DataBindingUtil.setContentView(this, R.layout.activity_reminders);
-        reminderDao = MyNagoriApplication.getDatabase().reminderDao();
+        reminderDao = MyNagoriApplication.Companion.getDatabase(getApplicationContext()).reminderDao();
         reminderDao.getAll().observe(this, new Observer<List<ReminderModel>>() {
             @Override
             public void onChanged(@Nullable List<ReminderModel> reminderModelList) {

@@ -21,7 +21,7 @@ public class ServiceInfoActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        itemDao = MyNagoriApplication.getDatabase().itemDao();
+        itemDao = MyNagoriApplication.Companion.getDatabase(getApplicationContext()).itemDao();
         binding = DataBindingUtil.setContentView(this, R.layout.activity_service_info);
         partsId = getIntent().getIntExtra("parts_info", -1);
         item=itemDao.get(partsId);

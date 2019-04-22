@@ -26,7 +26,7 @@ public class CompanyListActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = DataBindingUtil.setContentView(this, R.layout.activity_item_list);
-        itemDao = MyNagoriApplication.getDatabase().itemDao();
+        itemDao = MyNagoriApplication.Companion.getDatabase(getApplicationContext()).itemDao();
 
         getSupportActionBar().setTitle("Company List");
 
