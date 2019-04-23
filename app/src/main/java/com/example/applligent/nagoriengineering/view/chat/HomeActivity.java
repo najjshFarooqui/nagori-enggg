@@ -7,7 +7,7 @@ import android.view.View;
 import android.widget.Button;
 
 import com.example.applligent.nagoriengineering.R;
-import com.example.applligent.nagoriengineering.view.ImagesActivity;
+import com.example.applligent.nagoriengineering.view.SwipeGesture;
 import com.example.applligent.nagoriengineering.view.company.MainActivity;
 import com.example.applligent.nagoriengineering.view.reminders.ShowReminders;
 
@@ -45,7 +45,7 @@ public class HomeActivity extends AppCompatActivity {
         reminders.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(HomeActivity.this, ImagesActivity.class));
+                startActivity(new Intent(HomeActivity.this, SwipeGesture.class));
             }
         });
     }

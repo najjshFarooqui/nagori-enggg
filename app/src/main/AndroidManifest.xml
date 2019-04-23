@@ -29,7 +29,9 @@
         <activity android:name=".view.company.PartsInfoActivity" />
         <activity android:name=".view.company.CompanyDetailsActivity" />
         <activity android:name=".view.company.ServiceInfoActivity" />
-        <activity android:name=".view.chat.ChatActivity" />
+        <activity
+            android:name=".view.chat.ChatActivity"
+            android:windowSoftInputMode="adjustResize" />
         <activity android:name=".view.chat.LoginActvity" />
         <activity android:name=".view.chat.RegisterActivity" />
         <activity android:name=".view.StartActivity" />
@@ -56,7 +58,8 @@
         <activity android:name=".view.reminders.RemindersActivity" />
         <activity android:name=".view.reminders.GetReminderActivity" />
         <activity android:name=".view.reminders.ShowReminders" />
-        <activity android:name=".view.ImagesActivity"></activity>
+        <activity android:name=".view.ImagesActivity" />
+        <activity android:name=".view.SwipeGesture"></activity>
     </application>
 
 </manifest>

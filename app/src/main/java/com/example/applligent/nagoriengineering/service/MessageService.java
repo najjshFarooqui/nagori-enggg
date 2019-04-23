@@ -4,7 +4,6 @@ import android.support.v4.app.NotificationCompat;
 import android.support.v4.app.NotificationManagerCompat;
 import android.util.Log;
 
-import com.example.applligent.nagoriengineering.GeneralPreference;
 import com.example.applligent.nagoriengineering.MyNagoriApplication;
 import com.example.applligent.nagoriengineering.R;
 import com.example.applligent.nagoriengineering.dao.ChatDao;
@@ -47,17 +46,16 @@ public class MessageService extends FirebaseMessagingService {
             chatData.setMessage(dataMessage);
             chatData.setDisplayName(dataUser);
             chatData.setHourMinute(dataTime);
-
             chatData.setUserId(dataId);
             List<Chat> chatList = new ArrayList();
             chatList.add(chatData);
             chatDao.insertAll(chatList);
         }
-        if (email == GeneralPreference.getUserEmail(getApplicationContext())) {
+        // if (email.equals( GeneralPreference.getUserEmail(getApplicationContext()))) {
 
 
-            showNotification(dataUser, dataMessage);
-        }
+        //     showNotification(dataUser, dataMessage);
+        // }
 
         if (remoteMessage.getNotification() != null) {
             Log.d(TAG, "Message Notification Body: " + remoteMessage.getNotification().getBody());

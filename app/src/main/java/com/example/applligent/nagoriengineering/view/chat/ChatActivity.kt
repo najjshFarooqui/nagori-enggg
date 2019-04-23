@@ -11,6 +11,7 @@ import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import android.widget.EditText
+import android.widget.ImageView
 import com.example.applligent.nagoriengineering.GeneralPreference
 import com.example.applligent.nagoriengineering.MessageAdapter
 import com.example.applligent.nagoriengineering.MyNagoriApplication
@@ -30,14 +31,14 @@ class ChatActivity : AppCompatActivity() {
     lateinit var chatDao: ChatDao
     lateinit var messageAdapter: MessageAdapter
     lateinit var messageView: RecyclerView
-    lateinit var fab_bottom: FloatingActionButton
+    lateinit var fab_bottom: ImageView
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_chat)
 
-        fab_bottom = findViewById<View>(R.id.fab_bottom) as FloatingActionButton
+        fab_bottom = findViewById<View>(R.id.fab_bottom) as ImageView
         chatDao = MyNagoriApplication.getDatabase(applicationContext).chatDao()
         val actionBar = supportActionBar
         if (actionBar != null) {
@@ -56,6 +57,7 @@ class ChatActivity : AppCompatActivity() {
             messageAdapter = MessageAdapter(messages)
             messageView.adapter = messageAdapter
             messageView.scrollToPosition(messages!!.size - 1)
+
 
             fab_bottom.setOnClickListener {
                 messageView.scrollToPosition(messages.size - 1)
@@ -130,4 +132,3 @@ class ChatActivity : AppCompatActivity() {
 
 
 }
-

@@ -5,6 +5,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.example.applligent.nagoriengineering.model.Chat;
@@ -14,8 +15,7 @@ import java.util.List;
 public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.ItemHolder> {
     List<Chat> messages;
 
-
-    public MessageAdapter(List<Chat> messages){
+    public MessageAdapter(List<Chat> messages) {
         this.messages = messages;
     }
 
@@ -28,8 +28,9 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.ItemHold
     }
 
     @Override
-    public void onBindViewHolder(@NonNull MessageAdapter.ItemHolder itemHolder, int i) {
+    public void onBindViewHolder(@NonNull MessageAdapter.ItemHolder itemHolder, final int i) {
         itemHolder.bindTo(messages.get(i));
+
 
     }
 
@@ -38,22 +39,31 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.ItemHold
         return messages.size();
     }
 
-    public class ItemHolder extends RecyclerView.ViewHolder{
-        TextView userName;
-        TextView message;
+    public class ItemHolder extends RecyclerView.ViewHolder {
+
+        TextView name;
         TextView time;
+        TextView message;
+        LinearLayout leftParentLayout;
+
 
         public ItemHolder(@NonNull View itemView) {
             super(itemView);
-            userName=itemView.findViewById(R.id.message_user);
-            message=itemView.findViewById(R.id.message_text);
-            time=itemView.findViewById(R.id.message_time);
+            name = itemView.findViewById(R.id.message_user);
+            time = itemView.findViewById(R.id.message_time);
+            message = itemView.findViewById(R.id.message_text);
+
+
         }
 
         protected void bindTo(Chat chats) {
-            userName.setText(chats.getDisplayName());
+
+            name.setText(chats.getDisplayName());
+            String s = chats.getHourMinute();
+            String hourmin = s;
+            time.setText(hourmin);
             message.setText(chats.getMessage());
-            time.setText(chats.getHourMinute());
+
 
         }
     }

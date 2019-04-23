@@ -15,4 +15,5 @@ class Chat {
     var hourMinute: String? = null
     var message: String? = null
 
+
 }
