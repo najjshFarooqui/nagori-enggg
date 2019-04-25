@@ -25,7 +25,10 @@
         android:layout_toLeftOf="@+id/fab"
         android:background="@drawable/edittext"
         android:hint="type a message"
-        android:paddingLeft="20dp" />
+        android:paddingLeft="20dp"
+        android:paddingTop="5dp"
+        android:paddingRight="20dp"
+        android:paddingBottom="5dp" />
 
 
     <android.support.v7.widget.RecyclerView

@@ -60,7 +60,7 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.ItemHold
 
             name.setText(chats.getDisplayName());
             String s = chats.getHourMinute();
-            String hourmin = s;
+            String hourmin = s.substring(11, 16);
             time.setText(hourmin);
             message.setText(chats.getMessage());
 
