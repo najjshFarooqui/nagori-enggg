@@ -83,9 +83,10 @@ public class RegisterActivity extends AppCompatActivity {
                         if (task.isSuccessful()) {
                             progressBar.dismiss();
                             final FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser();
+                            String userName = currentUser.getDisplayName();
                             String userId = currentUser.getUid();
                             String currentEmail = currentUser.getEmail();
-
+                            String e = currentEmail;
 
                             FirebaseDatabase database = FirebaseDatabase.getInstance();
                             DatabaseReference myRef = database.getReference().child("users").child(userId);

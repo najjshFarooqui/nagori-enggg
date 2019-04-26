@@ -9,7 +9,7 @@
     <application
         android:name=".MyNagoriApplication"
         android:allowBackup="true"
-        android:icon="@drawable/search"
+        android:icon="@drawable/icon_app"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
@@ -45,7 +45,7 @@
 
         <meta-data
             android:name="com.google.firebase.messaging.default_notification_icon"
-            android:resource="@drawable/turbine" />
+            android:resource="@drawable/icon_app" />
         <meta-data
             android:name="com.google.firebase.messaging.default_notification_color"
             android:resource="@color/colorAccent" />

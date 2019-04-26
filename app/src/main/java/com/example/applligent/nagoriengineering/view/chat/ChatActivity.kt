@@ -54,7 +54,7 @@ class ChatActivity : AppCompatActivity() {
         chatDao.all.observe(this, Observer { messages ->
             messageView = findViewById<View>(R.id.list_of_messages) as RecyclerView
             messageView.layoutManager = LinearLayoutManager(applicationContext)
-            messageAdapter = MessageAdapter(messages)
+            messageAdapter = MessageAdapter(messages, applicationContext)
             messageView.adapter = messageAdapter
             messageView.scrollToPosition(messages!!.size - 1)
 

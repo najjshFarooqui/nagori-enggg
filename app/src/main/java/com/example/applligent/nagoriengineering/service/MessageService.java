@@ -4,10 +4,10 @@ import android.support.v4.app.NotificationCompat;
 import android.support.v4.app.NotificationManagerCompat;
 import android.util.Log;
 
+import com.example.applligent.nagoriengineering.GeneralPreference;
 import com.example.applligent.nagoriengineering.MyNagoriApplication;
 import com.example.applligent.nagoriengineering.R;
 import com.example.applligent.nagoriengineering.dao.ChatDao;
-import com.example.applligent.nagoriengineering.dao.UserDao;
 import com.example.applligent.nagoriengineering.model.Chat;
 import com.google.firebase.messaging.FirebaseMessagingService;
 import com.google.firebase.messaging.RemoteMessage;
@@ -22,24 +22,19 @@ public class MessageService extends FirebaseMessagingService {
     @Override
     public void onMessageReceived(RemoteMessage remoteMessage) {
         ChatDao chatDao;
-        UserDao userDao;
-
         String dataMessage = null;
         String dataUser = null;
         String dataTime = null;
         String dataId = null;
-        String email = null;
+
         chatDao = MyNagoriApplication.Companion.getDatabase(getApplicationContext()).chatDao();
-        userDao = MyNagoriApplication.Companion.getDatabase(getApplicationContext()).registerDao();
 
         if (remoteMessage.getData().size() > 0) {
             Log.d(TAG, "Message data payload: " + remoteMessage.getData().get("message"));
-            List<String> name = userDao.getDisplayName();
             dataMessage = remoteMessage.getData().get("message");
             dataUser = remoteMessage.getData().get("displayName");
             dataTime = remoteMessage.getData().get("timeStamp");
-            dataId = remoteMessage.getData().get("id");
-            email = remoteMessage.getData().get("email");
+            dataId = remoteMessage.getData().get("userId");
 
 
             chatData = new Chat();
@@ -47,16 +42,16 @@ public class MessageService extends FirebaseMessagingService {
             chatData.setDisplayName(dataUser);
             chatData.setHourMinute(dataTime);
             chatData.setUserId(dataId);
+
             List<Chat> chatList = new ArrayList();
             chatList.add(chatData);
             chatDao.insertAll(chatList);
         }
-        // if (email.equals( GeneralPreference.getUserEmail(getApplicationContext()))) {
+        if (!dataId.equals(GeneralPreference.getUserId(getApplicationContext()))) {
 
 
-        //     showNotification(dataUser, dataMessage);
-        // }
-
+            showNotification(dataUser, dataMessage);
+        }
         if (remoteMessage.getNotification() != null) {
             Log.d(TAG, "Message Notification Body: " + remoteMessage.getNotification().getBody());
             Log.d(TAG, "Message Notification Body: " + remoteMessage.getData().get("id"));
@@ -67,9 +62,10 @@ public class MessageService extends FirebaseMessagingService {
     public void showNotification(String title, String message) {
         NotificationCompat.Builder builder = new NotificationCompat.Builder(this, MyNagoriApplication.Companion.getChatChannel())
                 .setContentTitle(title)
-                .setSmallIcon(R.drawable.turbine)
+                .setSmallIcon(R.drawable.icon_app)
                 .setAutoCancel(true)
                 .setContentText(message);
+
 
         NotificationManagerCompat manager = NotificationManagerCompat.from(this);
         manager.notify(999, builder.build());

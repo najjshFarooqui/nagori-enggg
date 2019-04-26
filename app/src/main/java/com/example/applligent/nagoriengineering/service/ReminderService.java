@@ -64,7 +64,7 @@ public class ReminderService extends FirebaseMessagingService {
     public void showNotification(String title, String message) {
         NotificationCompat.Builder builder = new NotificationCompat.Builder(this, MyNagoriApplication.Companion.getReminderChannel())
                 .setContentTitle(title)
-                .setSmallIcon(R.drawable.turbine)
+                .setSmallIcon(R.drawable.icon_app)
                 .setAutoCancel(true)
                 .setContentText(message);
 

@@ -9,6 +9,7 @@
     android:background="@drawable/chat_bubble_right"
     android:elevation="4dp"
     android:id="@+id/parent_layout"
+    android:padding="5dp"
     android:orientation="vertical">
 
 
