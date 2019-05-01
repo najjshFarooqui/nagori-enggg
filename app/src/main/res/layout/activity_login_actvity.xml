@@ -5,7 +5,7 @@
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/colorPrimary"
+        android:background="@drawable/page"
         tools:context=".view.chat.LoginActvity">
 
 
@@ -15,25 +15,40 @@
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="24dp"
-            android:text="please login"
+            android:text="login yourself"
             android:textColor="#FFF"
-            android:textSize="32sp"
-            android:textStyle="bold" />
+            android:textSize="24sp" />
+
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:id="@+id/user_name"
+            android:layout_marginTop="24dp"
+            android:layout_marginRight="24dp"
+            android:background="@drawable/edittext"
+            android:hint="name"
+            android:layout_below="@+id/label"
+            android:paddingLeft="20dp"
+            android:textColor="@color/white"
+            android:layout_marginLeft="24dp"
+            android:textColorHint="@color/white" />
 
 
         <EditText
             android:id="@+id/userlog"
             android:layout_width="match_parent"
             android:layout_height="50dp"
-            android:layout_below="@+id/label"
+            android:layout_below="@+id/user_name"
+
             android:layout_marginLeft="24dp"
-            android:layout_marginTop="24dp"
+            android:layout_marginTop="16dp"
             android:layout_marginRight="24dp"
             android:background="@drawable/edittext"
             android:hint="email"
             android:inputType="textEmailAddress"
             android:paddingLeft="20dp"
-            android:textColor="#FFF"
+            android:textColor="@color/white"
             android:textColorHint="#FFF" />
 
 
@@ -49,7 +64,7 @@
             android:hint="password"
             android:inputType="textPassword"
             android:paddingLeft="20dp"
-            android:textColor="#FFF"
+            android:textColor="@color/white"
             android:textColorHint="#fff" />
 
 
@@ -65,8 +80,21 @@
             android:elevation="8dp"
             android:text="Login"
             android:textAllCaps="false"
-            android:textColor="@color/colorPrimary"
+            android:textColor="@color/light_red"
             android:textSize="18sp"
             android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/signup_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/login"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="24dp"
+            android:text="sign up"
+            android:textColor="@color/white"
+            android:textSize="24sp" />
+
+
     </RelativeLayout>
 </layout>

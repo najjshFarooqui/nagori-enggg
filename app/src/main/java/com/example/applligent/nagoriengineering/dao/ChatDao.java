@@ -30,5 +30,8 @@ public interface ChatDao {
     @Delete
     void delete(Chat chat);
 
+    @Query("DELETE FROM chat WHERE userId = :userId")
+    void deleteByUserId(String userId);
+
 
 }

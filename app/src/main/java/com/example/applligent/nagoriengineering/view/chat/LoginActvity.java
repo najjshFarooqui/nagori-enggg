@@ -12,6 +12,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.applligent.nagoriengineering.GeneralPreference;
@@ -33,13 +34,19 @@ import java.util.ArrayList;
 
 
 public class LoginActvity extends AppCompatActivity {
+
     UserDao userDao;
+    String name;
+    private TextView signUpLabel;
     private EditText userPassword;
     private Button login;
+
+
     private FirebaseAuth mAuth;
     private static final String TAG = "login success";
     private ProgressDialog progress;
     private EditText userName;
+    private EditText userEmail;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,36 +62,47 @@ public class LoginActvity extends AppCompatActivity {
             actionBar.setDisplayHomeAsUpEnabled(true);
         }
         mAuth = FirebaseAuth.getInstance();
-
-        userName = findViewById(R.id.userlog);
+        userName = findViewById(R.id.user_name);
+        userEmail = findViewById(R.id.userlog);
         userPassword = findViewById(R.id.passlog);
+        signUpLabel = findViewById(R.id.signup_label);
         login = findViewById(R.id.login);
         login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String userName = LoginActvity.this.userName.getText().toString();
+                String userEmail = LoginActvity.this.userEmail.getText().toString();
                 String password = userPassword.getText().toString();
-                if (!TextUtils.isEmpty(userName) || !TextUtils.isEmpty(password)) {
+                name = userName.getText().toString();
+
+                if (!TextUtils.isEmpty(userEmail) || !TextUtils.isEmpty(password) || !TextUtils.isEmpty(name)) {
                     progress.setTitle("login in progress");
                     progress.setCanceledOnTouchOutside(false);
                     progress.show();
-                    loginUser(userName, password);
+                    loginUser(userEmail, password);
                 }
+            }
+        });
+
+        signUpLabel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(LoginActvity.this, RegisterActivity.class));
+
             }
         });
 
 
     }
 
-    private void loginUser(final String userName, final String password) {
-        mAuth.signInWithEmailAndPassword(userName, password)
+    private void loginUser(final String userEmail, final String password) {
+        mAuth.signInWithEmailAndPassword(userEmail, password)
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
                             Log.d(TAG, "signInWithEmail:success");
                             progress.dismiss();
-                            GeneralPreference.setUserEmail(getApplicationContext(), userName);
+                            GeneralPreference.setUserEmail(getApplicationContext(), name);
                             temp();
                             Intent intent = new Intent(LoginActvity.this, ChatActivity.class);
                             intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);

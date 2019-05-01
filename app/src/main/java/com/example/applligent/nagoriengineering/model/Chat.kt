@@ -14,5 +14,8 @@ class Chat {
     var timeStamp: String? = null
     var hourMinute: String? = null
     var message: String? = null
+    override fun toString(): String {
+        return "Chat(id=$id, displayName=$displayName, userId=$userId, timeStamp=$timeStamp, hourMinute=$hourMinute, message=$message)"
+    }
 
 }

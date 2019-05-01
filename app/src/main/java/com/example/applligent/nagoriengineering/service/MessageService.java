@@ -1,5 +1,7 @@
 package com.example.applligent.nagoriengineering.service;
 
+import android.app.PendingIntent;
+import android.content.Intent;
 import android.support.v4.app.NotificationCompat;
 import android.support.v4.app.NotificationManagerCompat;
 import android.util.Log;
@@ -9,6 +11,7 @@ import com.example.applligent.nagoriengineering.MyNagoriApplication;
 import com.example.applligent.nagoriengineering.R;
 import com.example.applligent.nagoriengineering.dao.ChatDao;
 import com.example.applligent.nagoriengineering.model.Chat;
+import com.example.applligent.nagoriengineering.view.chat.ChatActivity;
 import com.google.firebase.messaging.FirebaseMessagingService;
 import com.google.firebase.messaging.RemoteMessage;
 
@@ -17,6 +20,7 @@ import java.util.List;
 
 public class MessageService extends FirebaseMessagingService {
     private static final String TAG = "message triggered";
+    private static final int REQUEST_CODE = 1;
     Chat chatData;
 
     @Override
@@ -60,9 +64,15 @@ public class MessageService extends FirebaseMessagingService {
     }
 
     public void showNotification(String title, String message) {
+
+        Intent i = new Intent(this, ChatActivity.class);
+
+        PendingIntent pendingIntent = PendingIntent.getActivity(this, REQUEST_CODE,
+                i, PendingIntent.FLAG_UPDATE_CURRENT);
         NotificationCompat.Builder builder = new NotificationCompat.Builder(this, MyNagoriApplication.Companion.getChatChannel())
                 .setContentTitle(title)
                 .setSmallIcon(R.drawable.icon_app)
+                .setContentIntent(pendingIntent)
                 .setAutoCancel(true)
                 .setContentText(message);
 

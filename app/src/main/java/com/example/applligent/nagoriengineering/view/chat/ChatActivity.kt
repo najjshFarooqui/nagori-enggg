@@ -38,7 +38,10 @@ class ChatActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_chat)
 
+
+
         fab_bottom = findViewById<View>(R.id.fab_bottom) as ImageView
+        messageView = findViewById<View>(R.id.list_of_messages) as RecyclerView
         chatDao = MyNagoriApplication.getDatabase(applicationContext).chatDao()
         val actionBar = supportActionBar
         if (actionBar != null) {
@@ -52,7 +55,7 @@ class ChatActivity : AppCompatActivity() {
         //if internet is on
 
         chatDao.all.observe(this, Observer { messages ->
-            messageView = findViewById<View>(R.id.list_of_messages) as RecyclerView
+
             messageView.layoutManager = LinearLayoutManager(applicationContext)
             messageAdapter = MessageAdapter(messages, applicationContext)
             messageView.adapter = messageAdapter
@@ -89,6 +92,20 @@ class ChatActivity : AppCompatActivity() {
             message.setText("")
             message.hint = "Type a message"
         }
+
+        messageView.addOnScrollListener(object : RecyclerView.OnScrollListener() {
+
+            override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
+                super.onScrolled(recyclerView, dx, dy)
+
+                if (dy < 0) {
+                    fab_bottom.visibility = View.VISIBLE
+                } else if (dy > 0) {
+                    fab_bottom.visibility = View.GONE
+                }
+            }
+
+        })
 
 
     }
