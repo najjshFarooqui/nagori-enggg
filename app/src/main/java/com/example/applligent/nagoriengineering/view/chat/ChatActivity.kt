@@ -147,5 +147,17 @@ class ChatActivity : AppCompatActivity() {
 
     }
 
+    override fun onDestroy() {
+        super.onDestroy()
+        val sdf = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss")
+        val timeHourMin = SimpleDateFormat("HH:mm")
+        val time: String = sdf.format(Date())
+        val lastSeenTime: String = timeHourMin.format(Date())
+        reference = FirebaseDatabase.getInstance().reference.child("messages")
+        reference.push().setValue(lastSeenTime)
+
+
+    }
+
 
 }

@@ -86,6 +86,7 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ItemHolder> im
         ImageView image;
         TextView companyName;
 
+
         public ItemHolder(@NonNull final View itemView) {
             super(itemView);
             image = itemView.findViewById(R.id.image);

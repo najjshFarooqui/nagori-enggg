@@ -2,8 +2,8 @@ package com.example.applligent.nagoriengineering.view;
 
 import android.media.Ringtone;
 import android.media.RingtoneManager;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.widget.TextClock;
 import android.widget.TimePicker;
 
@@ -21,18 +21,18 @@ public class AlarmActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_alarm);
-        alarmTime = (TimePicker) findViewById(R.id.timePicker);
+        alarmTime = findViewById(R.id.timePicker);
 
-        final Ringtone r =  RingtoneManager.getRingtone(getApplicationContext(),RingtoneManager.getDefaultUri(RingtoneManager.TYPE_ALARM));
-        currentTime = (TextClock) findViewById(R.id.textClock);
+        final Ringtone r = RingtoneManager.getRingtone(getApplicationContext(), RingtoneManager.getDefaultUri(RingtoneManager.TYPE_ALARM));
+        currentTime = findViewById(R.id.textClock);
         final Timer t = new Timer();
         t.scheduleAtFixedRate(new TimerTask() {
             @Override
             public void run() {
-                if (currentTime.getText().toString().equals(AlarmTime())){
+                if (currentTime.getText().toString().equals(AlarmTime())) {
                     r.play();
 
-                }else{
+                } else {
                     r.stop();
                 }
 
@@ -43,13 +43,13 @@ public class AlarmActivity extends AppCompatActivity {
     public String AlarmTime() {
         Integer alarmHour = alarmTime.getCurrentHour();
         Integer alarmMinute = alarmTime.getCurrentMinute();
-        String stringAlarmMinutes ;
-        if(alarmMinute<10){
-            stringAlarmMinutes="0";
-            stringAlarmMinutes= stringAlarmMinutes.concat(alarmMinute.toString());
+        String stringAlarmMinutes;
+        if (alarmMinute < 10) {
+            stringAlarmMinutes = "0";
+            stringAlarmMinutes = stringAlarmMinutes.concat(alarmMinute.toString());
 
-        }else{
-            stringAlarmMinutes=alarmMinute.toString();
+        } else {
+            stringAlarmMinutes = alarmMinute.toString();
         }
 
         String stringAlarmTime;
@@ -60,8 +60,6 @@ public class AlarmActivity extends AppCompatActivity {
         } else {
             stringAlarmTime = alarmHour.toString().concat(":").concat(stringAlarmMinutes).concat(":").concat(" AM");
         }
-           return stringAlarmTime;
-
+        return stringAlarmTime;
     }
 }
-

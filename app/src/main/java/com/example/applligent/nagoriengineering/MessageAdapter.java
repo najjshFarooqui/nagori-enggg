@@ -1,27 +1,67 @@
 package com.example.applligent.nagoriengineering;
 
 import android.content.Context;
+import android.graphics.drawable.Drawable;
 import android.support.annotation.NonNull;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Filter;
+import android.widget.Filterable;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.applligent.nagoriengineering.dao.ChatDao;
 import com.example.applligent.nagoriengineering.model.Chat;
 
+import java.util.ArrayList;
 import java.util.List;
 
-public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.ItemHolder> {
+public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.ItemHolder> implements Filterable {
     List<Chat> messages;
     Context context;
+    List<String> itemFull;
 
+
+    private Filter itemFilter = new Filter() {
+        @Override
+        protected FilterResults performFiltering(CharSequence constraint) {
+            List<String> filteredList = new ArrayList<>();
+            if (constraint == null || constraint.length() == 0) {
+                filteredList.addAll(itemFull);
+            } else {
+                String filterPattern = constraint.toString().toLowerCase().trim();
+                for (String searchItem : itemFull) {
+                    if (searchItem.toLowerCase().contains(filterPattern)) {
+                        filteredList.add(searchItem);
+                    }
+                }
+            }
+            FilterResults results = new FilterResults();
+            results.values = filteredList;
+            return results;
+        }
+
+        @Override
+        protected void publishResults(CharSequence constraint, FilterResults results) {
+            messages.clear();
+            messages.addAll((List) results.values);
+            notifyDataSetChanged();
+
+        }
+    };
 
     public MessageAdapter(List<Chat> messages, Context context) {
         this.messages = messages;
         this.context = context;
+        itemFull = new ArrayList<>();
+    }
+
+    @Override
+    public int getItemViewType(int position) {
+        return super.getItemViewType(position);
     }
 
     @NonNull
@@ -29,6 +69,9 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.ItemHold
     public MessageAdapter.ItemHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
         LayoutInflater inflater = LayoutInflater.from(viewGroup.getContext());
         View view = inflater.inflate(R.layout.message_layout, viewGroup, false);
+        Drawable drawable = context.getResources().getDrawable(R.drawable.chat_bubble_right);
+        view.setBackground(drawable);
+
 
         return new ItemHolder(view);
     }
@@ -45,12 +88,18 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.ItemHold
         return messages.size();
     }
 
+    @Override
+    public Filter getFilter() {
+        return itemFilter;
+    }
+
 
     public class ItemHolder extends RecyclerView.ViewHolder {
 
-        TextView name;
+
         TextView time;
         TextView message;
+        TextView name;
 
 
         public ItemHolder(@NonNull View itemView) {
@@ -66,8 +115,7 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.ItemHold
                     ChatDao chatDao = MyNagoriApplication.Companion.getDatabase(context).chatDao();
                     Chat msg = messages.get(getAdapterPosition());
                     String s = msg.getUserId();
-                    chatDao.deleteByUserId(s);
-
+                    Toast.makeText(context, "U+1F617", Toast.LENGTH_SHORT).show();
                     return true;
 
                 }
@@ -82,7 +130,7 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.ItemHold
 
             if (name.getText().toString().equals(GeneralPreference.getNameLoaded(context))) {
                 name.setTextColor(ContextCompat.getColor(context, R.color.colorPrimaryDark));
-            } else if (name.getText().toString().equals("alfiya")) {
+            } else if (name.getText().toString().equals("Alfiya")) {
                 name.setTextColor(ContextCompat.getColor(context, R.color.colorPrimaryDark));
             }
 

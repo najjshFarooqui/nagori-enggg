@@ -31,12 +31,12 @@ import com.google.firebase.database.FirebaseDatabase;
 
 
 public class RegisterActivity extends AppCompatActivity {
+    private static final String TAG = "registerActivity";
     ActivityRegisterBinding binding;
     Toolbar mToolbar;
-    private FirebaseAuth mAuth;
-    private static final String TAG = "registerActivity";
-    private ProgressDialog progressBar;
     UserDao registerDao;
+    private FirebaseAuth mAuth;
+    private ProgressDialog progressBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
