@@ -11,7 +11,7 @@ import com.example.applligent.nagoriengineering.MyNagoriApplication;
 import com.example.applligent.nagoriengineering.R;
 import com.example.applligent.nagoriengineering.dao.ChatDao;
 import com.example.applligent.nagoriengineering.model.Chat;
-import com.example.applligent.nagoriengineering.view.chat.ChatActivity;
+import com.example.applligent.nagoriengineering.view.chat.ChatActivityNew;
 import com.google.firebase.messaging.FirebaseMessagingService;
 import com.google.firebase.messaging.RemoteMessage;
 
@@ -65,7 +65,9 @@ public class MessageService extends FirebaseMessagingService {
 
     public void showNotification(String title, String message) {
 
-        Intent i = new Intent(this, ChatActivity.class);
+        Intent i = new Intent(this, ChatActivityNew.class);
+        i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+
 
         PendingIntent pendingIntent = PendingIntent.getActivity(this, REQUEST_CODE,
                 i, PendingIntent.FLAG_UPDATE_CURRENT);

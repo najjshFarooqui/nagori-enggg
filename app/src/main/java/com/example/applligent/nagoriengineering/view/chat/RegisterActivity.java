@@ -108,7 +108,7 @@ public class RegisterActivity extends AppCompatActivity {
                                     if (task.isSuccessful()) {
                                         progressBar.dismiss();
                                         registerDao.insert(user);
-                                        startActivity(new Intent(RegisterActivity.this, ChatActivity.class).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK));
+                                        startActivity(new Intent(RegisterActivity.this, ChatActivityNew.class).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK));
                                         finish();
                                     }
                                 }

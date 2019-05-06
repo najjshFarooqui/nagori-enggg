@@ -10,7 +10,7 @@ abstract class MyDatabase : RoomDatabase() {
     abstract fun itemDao(): ItemDao
     abstract fun subItemDao(): SubItemDao
     abstract fun chatDao(): ChatDao
-
+    abstract fun statusDao(): StatusDao
     abstract fun registerDao(): UserDao
     abstract fun reminderDao(): ReminderDao
 }

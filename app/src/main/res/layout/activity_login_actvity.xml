@@ -5,83 +5,75 @@
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@drawable/page"
+        android:layout_margin="24dp"
         tools:context=".view.chat.LoginActvity">
 
 
-        <TextView
-            android:id="@+id/label"
-            android:layout_width="wrap_content"
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/appcompat_username"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="24dp"
-            android:text="login yourself"
-            android:textColor="#FFF"
-            android:textSize="24sp" />
+            android:layout_marginTop="32dp">
+
+            <android.support.v7.widget.AppCompatEditText
+                android:id="@+id/user_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/label"
+                android:layout_marginTop="24dp"
+                android:hint="name"
+                android:textColor="@color/light_red"
+                android:textColorHint="@color/light_red" />
+        </android.support.design.widget.TextInputLayout>
 
 
-        <EditText
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/appcompat_email"
             android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:id="@+id/user_name"
-            android:layout_marginTop="24dp"
-            android:layout_marginRight="24dp"
-            android:background="@drawable/edittext"
-            android:hint="name"
-            android:layout_below="@+id/label"
-            android:paddingLeft="20dp"
-            android:textColor="@color/white"
-            android:layout_marginLeft="24dp"
-            android:textColorHint="@color/white" />
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/appcompat_username">
+
+            <android.support.v7.widget.AppCompatEditText
+                android:id="@+id/user_emaill"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:hint="email"
+                android:inputType="textEmailAddress"
+                android:textColor="@color/light_red"
+                android:textColorHint="@color/light_red" />
+        </android.support.design.widget.TextInputLayout>
 
 
-        <EditText
-            android:id="@+id/userlog"
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/appcompat_password"
             android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:layout_below="@+id/user_name"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/appcompat_email">
 
-            android:layout_marginLeft="24dp"
-            android:layout_marginTop="16dp"
-            android:layout_marginRight="24dp"
-            android:background="@drawable/edittext"
-            android:hint="email"
-            android:inputType="textEmailAddress"
-            android:paddingLeft="20dp"
-            android:textColor="@color/white"
-            android:textColorHint="#FFF" />
-
-
-        <EditText
-            android:id="@+id/passlog"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:layout_below="@+id/userlog"
-            android:layout_marginLeft="24dp"
-            android:layout_marginTop="16dp"
-            android:layout_marginRight="24dp"
-            android:background="@drawable/edittext"
-            android:hint="password"
-            android:inputType="textPassword"
-            android:paddingLeft="20dp"
-            android:textColor="@color/white"
-            android:textColorHint="#fff" />
+            <android.support.v7.widget.AppCompatEditText
+                android:id="@+id/user_password"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:hint="password"
+                android:inputType="textEmailAddress"
+                android:textColor="@color/light_red"
+                android:textColorHint="@color/light_red" />
+        </android.support.design.widget.TextInputLayout>
 
 
         <Button
             android:id="@+id/login"
             android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:layout_below="@+id/passlog"
-            android:layout_marginLeft="24dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/appcompat_password"
             android:layout_marginTop="16dp"
-            android:layout_marginRight="24dp"
-            android:background="@drawable/button"
+            android:background="@drawable/page"
             android:elevation="8dp"
             android:text="Login"
             android:textAllCaps="false"
-            android:textColor="@color/light_red"
-            android:textSize="18sp"
+            android:textColor="@color/white"
             android:textStyle="bold" />
 
         <TextView
@@ -92,7 +84,7 @@
             android:layout_centerHorizontal="true"
             android:layout_marginTop="24dp"
             android:text="sign up"
-            android:textColor="@color/white"
+            android:textColor="@color/dark_red"
             android:textSize="24sp" />
 
 

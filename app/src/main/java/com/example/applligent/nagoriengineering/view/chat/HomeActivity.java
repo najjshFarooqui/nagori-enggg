@@ -22,7 +22,7 @@ public class HomeActivity extends AppCompatActivity {
         chats.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(HomeActivity.this, ChatActivity.class));
+                startActivity(new Intent(HomeActivity.this, ChatActivityNew.class));
             }
         });
         Button companies = findViewById(R.id.companyButton);

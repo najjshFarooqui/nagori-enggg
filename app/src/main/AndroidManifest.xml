@@ -59,13 +59,16 @@
         <activity android:name=".view.reminders.GetReminderActivity" />
         <activity android:name=".view.reminders.ShowReminders" />
         <activity android:name=".view.ImagesActivity" />
-        <activity android:name=".view.SwipeGesture"></activity>
+        <activity android:name=".view.SwipeGesture" />
 
         <receiver android:name="service.MyReceiver">
             <intent-filter>
                 <action android:name="android.intent.action.DATE_CHANGED" />
             </intent-filter>
         </receiver>
+
+        <activity android:name=".view.chat.ChatActivityNew" />
+        <activity android:name=".view.chat.ShowImages"></activity>
     </application>
 
 </manifest>

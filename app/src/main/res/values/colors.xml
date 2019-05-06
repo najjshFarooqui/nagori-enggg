@@ -23,4 +23,6 @@
     <color name="dark_red">#FFFD0000</color>
 
     <color name="light_red">#f16969</color>
+
+    <color name="chat_beg">#E1FFC7</color>
 </resources>

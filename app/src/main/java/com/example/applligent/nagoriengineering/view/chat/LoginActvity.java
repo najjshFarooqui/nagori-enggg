@@ -63,8 +63,8 @@ public class LoginActvity extends AppCompatActivity {
         }
         mAuth = FirebaseAuth.getInstance();
         userName = findViewById(R.id.user_name);
-        userEmail = findViewById(R.id.userlog);
-        userPassword = findViewById(R.id.passlog);
+        userEmail = findViewById(R.id.user_emaill);
+        userPassword = findViewById(R.id.user_password);
         signUpLabel = findViewById(R.id.signup_label);
         login = findViewById(R.id.login);
         login.setOnClickListener(new View.OnClickListener() {
@@ -104,7 +104,7 @@ public class LoginActvity extends AppCompatActivity {
                             progress.dismiss();
                             GeneralPreference.setUserEmail(getApplicationContext(), name);
                             temp();
-                            Intent intent = new Intent(LoginActvity.this, ChatActivity.class);
+                            Intent intent = new Intent(LoginActvity.this, ChatActivityNew.class);
                             intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                             startActivity(intent);
                             finish();
