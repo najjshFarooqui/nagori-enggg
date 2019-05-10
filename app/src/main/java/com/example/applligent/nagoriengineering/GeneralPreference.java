@@ -60,6 +60,17 @@ public class GeneralPreference {
         return sharedPreferences.getString("user_admin", "");
     }
 
+    public static void setFlag(Context context, String flag) {
+        SharedPreferences sharedPreferences = context.getSharedPreferences(FILE_NAME, Context.MODE_PRIVATE);
+        sharedPreferences.edit().putString("user_flag", flag).apply();
+
+    }
+
+    public static String getFlag(Context context) {
+        SharedPreferences sharedPreferences = context.getSharedPreferences(FILE_NAME, Context.MODE_PRIVATE);
+        return sharedPreferences.getString("user_flag", "");
+    }
+
 
 
 }

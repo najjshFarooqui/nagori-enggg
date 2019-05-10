@@ -30,7 +30,7 @@ class FragmentCollectionAdapter(fm: FragmentManager) : FragmentStatePagerAdapter
         } else if (position == 2) {
             "Photos"
         } else {
-            "Don't Know"
+            "Status"
         }
     }
 }

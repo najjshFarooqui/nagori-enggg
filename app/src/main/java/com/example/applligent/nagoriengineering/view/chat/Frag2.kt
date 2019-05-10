@@ -64,7 +64,6 @@ class Frag2 : Fragment() {
 
         mButtonUpload!!.setOnClickListener {
             if (mUploadTask != null && mUploadTask!!.isInProgress) {
-                Toast.makeText(context, "Upload in progress", Toast.LENGTH_SHORT).show()
             } else {
                 uploadFile()
             }

@@ -36,6 +36,7 @@
         <activity android:name=".view.chat.RegisterActivity" />
         <activity android:name=".view.StartActivity" />
         <activity android:name=".view.company.MainActivity" />
+        <activity android:name=".WriteStatusFrag"/>
 
         <service android:name=".service.MessageService">
             <intent-filter>

@@ -9,15 +9,17 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:src="@drawable/plus"
-        android:text="Choose file" />
+        android:src="@drawable/plus" />
 
     <EditText
         android:id="@+id/edit_text_file_name"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_alignEnd="@+id/button_upload"
         android:layout_alignParentBottom="true"
         android:layout_marginStart="16dp"
+        android:layout_marginEnd="40dp"
+
         android:layout_toEndOf="@+id/button_choose_image"
         android:hint="Enter file name"
         android:textColorHint="#FFBA9191" />

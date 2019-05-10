@@ -51,7 +51,7 @@ public class MessageService extends FirebaseMessagingService {
             chatList.add(chatData);
             chatDao.insertAll(chatList);
         }
-        if (!dataId.equals(GeneralPreference.getUserId(getApplicationContext()))) {
+        if (!dataId.equals(GeneralPreference.getUserId(getApplicationContext()))  && !GeneralPreference.getFlag(getApplicationContext()).equals("najish")){
 
 
             showNotification(dataUser, dataMessage);

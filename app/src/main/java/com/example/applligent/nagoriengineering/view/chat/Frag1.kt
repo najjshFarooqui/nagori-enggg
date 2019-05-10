@@ -11,10 +11,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.EditText
 import android.widget.ImageView
-import com.example.applligent.nagoriengineering.GeneralPreference
-import com.example.applligent.nagoriengineering.MessageAdapter
-import com.example.applligent.nagoriengineering.MyNagoriApplication
-import com.example.applligent.nagoriengineering.R
+import com.example.applligent.nagoriengineering.*
 import com.example.applligent.nagoriengineering.dao.ChatDao
 import com.example.applligent.nagoriengineering.model.Chat
 import com.google.firebase.auth.FirebaseAuth
@@ -27,7 +24,7 @@ class Frag1 : Fragment() {
     lateinit var mAuth: FirebaseAuth
     lateinit var reference: DatabaseReference
     lateinit var chatDao: ChatDao
-    lateinit var messageAdapter: MessageAdapter
+    lateinit var messageAdapter: ChatRecyclerAdapter
     lateinit var messageView: RecyclerView
     lateinit var fab_bottom: ImageView
 
@@ -47,7 +44,7 @@ class Frag1 : Fragment() {
         chatDao.all.observe(this, Observer { messages ->
 
             messageView.layoutManager = LinearLayoutManager(context)
-            messageAdapter = MessageAdapter(messages, context)
+            messageAdapter = ChatRecyclerAdapter(messages, context)
             messageView.adapter = messageAdapter
             messageView.scrollToPosition(messages!!.size - 1)
 
@@ -96,6 +93,20 @@ class Frag1 : Fragment() {
             }
         }
 
+
+    }
+
+    override fun onResume() {
+        super.onResume()
+        GeneralPreference.setFlag(context!!,"najish")
+
+
+
+    }
+
+    override fun onStop() {
+        super.onStop()
+        GeneralPreference.setFlag(context!!,"farooqui")
 
     }
 

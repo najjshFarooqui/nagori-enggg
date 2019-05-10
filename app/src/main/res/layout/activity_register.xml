@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout>
+
 
     <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@drawable/page"
+
         android:orientation="vertical"
-        android:padding="10dp"
-        tools:context=".RegisterActivity">
+        android:padding="16dp"
+        tools:context=".view.chat.RegisterActivity">
 
 
         <TextView
@@ -18,7 +18,7 @@
             android:layout_centerHorizontal="true"
             android:layout_marginTop="16dp"
             android:text="Register Yourself"
-            android:textColor="@color/white"
+            android:textColor="@color/light_red"
             android:textSize="24sp" />
 
         <android.support.design.widget.TextInputLayout
@@ -33,11 +33,11 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="56dp"
-                android:backgroundTint="@color/white"
+                android:backgroundTint="@color/light_red"
                 android:hint="name"
                 android:inputType="textPersonName"
-                android:textColor="@color/white"
-                android:textColorHint="@color/white" />
+                android:textColor="@color/light_red"
+                android:textColorHint="@color/light_red" />
         </android.support.design.widget.TextInputLayout>
 
 
@@ -53,11 +53,11 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
-                android:backgroundTint="@color/white"
+                android:backgroundTint="@color/light_red"
                 android:hint="email"
                 android:inputType="textEmailAddress"
-                android:textColor="@color/white"
-                android:textColorHint="@color/white" />
+                android:textColor="@color/light_red"
+                android:textColorHint="@color/light_red" />
         </android.support.design.widget.TextInputLayout>
 
 
@@ -72,11 +72,11 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
-                android:backgroundTint="@color/white"
+                android:backgroundTint="@color/light_red"
                 android:hint="password"
                 android:inputType="textPassword"
-                android:textColor="@color/white"
-                android:textColorHint="@color/white" />
+                android:textColor="@color/light_red"
+                android:textColorHint="@color/light_red" />
         </android.support.design.widget.TextInputLayout>
 
 
@@ -94,4 +94,3 @@
             android:textColor="@color/common_google_signin_btn_text_dark_focused" />
 
     </RelativeLayout>
-</layout>
