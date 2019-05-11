@@ -1,19 +1,15 @@
 package com.example.applligent.nagoriengineering;
 
 import android.content.Context;
-
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-
 import android.widget.TextView;
-
 
 import com.example.applligent.nagoriengineering.model.Chat;
 import com.google.firebase.auth.FirebaseAuth;
-
 
 import java.util.List;
 
@@ -79,20 +75,27 @@ public class ChatRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
 
         myChatViewHolder.txtChatMessage.setText(chat.getMessage());
         String time = chat.getHourMinute().substring(11,16);
+        if (Integer.parseInt(time.substring(0, 2)) > 12) {
+            time = time.concat(" PM");
+        } else {
+            time = time.concat(" AM");
+        }
         myChatViewHolder.myTime.setText(time);
 
     }
 
     private void configureOtherChatViewHolder(OtherChatViewHolder otherChatViewHolder, int position) {
         Chat chat = mChats.get(position);
-
-
         String alphabet = chat.getDisplayName();
-
-
         otherChatViewHolder.txtChatMessage.setText(chat.getMessage());
         otherChatViewHolder.txtUserAlphabet.setText(alphabet);
         String time =chat.getHourMinute().substring(11,16);
+        if (Integer.parseInt(time.substring(0, 2)) > 12) {
+            time = time.concat(" PM");
+        } else {
+            time = time.concat(" AM");
+        }
+
         otherChatViewHolder.theirTime.setText(time);
     }
 
@@ -123,7 +126,7 @@ public class ChatRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
 
         public MyChatViewHolder(View itemView) {
             super(itemView);
-            txtChatMessage = (TextView) itemView.findViewById(R.id.message_body_mine);
+            txtChatMessage = itemView.findViewById(R.id.message_body_mine);
             myTime = itemView.findViewById(R.id.time_mine);
 
 
@@ -137,7 +140,7 @@ public class ChatRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
 
         public OtherChatViewHolder(View itemView) {
             super(itemView);
-            txtChatMessage = (TextView) itemView.findViewById(R.id.message_body_sender);
+            txtChatMessage = itemView.findViewById(R.id.message_body_sender);
             txtUserAlphabet = itemView.findViewById(R.id.name_sender);
             theirTime = itemView.findViewById(R.id.time_their);
 

@@ -2,8 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="#E1FFC7">
+    android:layout_height="match_parent">
 
 
     <android.support.v7.widget.RecyclerView
@@ -16,15 +15,16 @@
 
     <ImageView
         android:id="@+id/fab_bottom"
-        android:layout_width="24dp"
-        android:layout_height="24dp"
+        android:layout_width="20dp"
+        android:layout_height="16dp"
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
         android:layout_centerInParent="true"
         android:layout_centerHorizontal="true"
         android:layout_marginRight="16dp"
         android:layout_marginBottom="80dp"
-        android:alpha="0.5"
+        android:alpha="0.2"
+
         android:src="@drawable/bottom_arrow" />
 
 
@@ -34,12 +34,16 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_toLeftOf="@+id/fab"
+        android:layout_marginStart="4dp"
         android:background="@drawable/edittext"
         android:hint="type a message"
         android:minHeight="44dp"
         android:paddingLeft="20dp"
         android:paddingTop="5dp"
         android:paddingRight="20dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginBottom="4dp"
+        android:drawableRight="@drawable/camera"
         android:paddingBottom="5dp" />
 
 
@@ -50,6 +54,7 @@
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
         android:src="@drawable/sendbutton"
+        android:layout_marginBottom="4dp"
         app:fabSize="mini" />
 
 
