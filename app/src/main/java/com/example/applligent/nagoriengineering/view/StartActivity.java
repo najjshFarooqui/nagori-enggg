@@ -20,7 +20,7 @@ public class StartActivity extends AppCompatActivity {
         setContentView(R.layout.activity_start);
         ActionBar actionBar = getSupportActionBar();
         if (actionBar != null) {
-            actionBar.setTitle("Register Yourself");
+            actionBar.setTitle("Login or  Register");
             actionBar.setHomeAsUpIndicator(R.drawable.ic_arrow_back);
             actionBar.setDisplayShowTitleEnabled(true);
             actionBar.setDisplayHomeAsUpEnabled(true);
