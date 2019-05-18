@@ -3,8 +3,8 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:paddingVertical="2dp"
-    android:paddingLeft="60dp"
-    android:paddingRight="15dp"
+    android:paddingLeft="80dp"
+    android:paddingRight="18dp"
     android:clipToPadding="false">
 
   <TextView
@@ -15,10 +15,13 @@
       android:layout_alignParentRight="true"
       android:background="@drawable/my_message"
       android:elevation="2dp"
-      android:padding="12dp"
+      android:paddingLeft="10dp"
+      android:paddingTop="4dp"
+      android:paddingRight="24dp"
+      android:paddingBottom="4dp"
       android:text="Placeholder message"
-      android:textColor="#fff"
-      android:textSize="18dp" />
+      android:textColor="@color/white"
+      android:textSize="12sp" />
 
   <TextView
       android:id="@+id/time_mine"
@@ -28,7 +31,7 @@
       android:layout_alignParentRight="true"
       android:layout_marginTop="4dp"
       android:text="getting"
-      android:textColor="@color/light_red"
+      android:textColor="@color/table_row"
       android:visibility="gone"
       android:textSize="10sp" />
 

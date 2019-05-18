@@ -2,7 +2,6 @@ package com.example.applligent.nagoriengineering;
 
 import android.content.Context;
 import android.content.res.AssetManager;
-import android.graphics.Typeface;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
 import android.util.TypedValue;
@@ -18,20 +17,19 @@ import com.google.firebase.auth.FirebaseAuth;
 import java.util.List;
 
 
-
-
 public class ChatRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     private static final int VIEW_TYPE_ME = 1;
     private static final int VIEW_TYPE_OTHER = 2;
 
 
-    private List<Chat> mChats;
+    public List<Chat> mChats;
     Context context;
 
 
     public ChatRecyclerAdapter(List<Chat> chats, Context context) {
         mChats = chats;
         this.context = context;
+
     }
 
 
@@ -73,12 +71,12 @@ public class ChatRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
     private void configureMyChatViewHolder(MyChatViewHolder myChatViewHolder, int position) {
         Chat chat = mChats.get(position);
         AssetManager am = context.getApplicationContext().getAssets();
-        Typeface face = Typeface.createFromAsset(am,
-                "Champagne & Limousines.ttf");
-        myChatViewHolder.txtChatMessage.setTypeface(face);
+        //Typeface face = Typeface.createFromAsset(am,
+        //        "Champagne & Limousines.ttf");
+        //myChatViewHolder.txtChatMessage.setTypeface(face);
         myChatViewHolder.txtChatMessage.setText(chat.getMessage());
-        myChatViewHolder.txtChatMessage.setTextSize(TypedValue.COMPLEX_UNIT_SP, 16);
-        String time = chat.getHourMinute().substring(11,16);
+        myChatViewHolder.txtChatMessage.setTextSize(TypedValue.COMPLEX_UNIT_SP, 18);
+        String time = chat.getHourMinute().substring(11, 16);
         if (Integer.parseInt(time.substring(0, 2)) > 12) {
             time = time.concat(" PM");
         } else {
@@ -93,17 +91,17 @@ public class ChatRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
         Chat chat = mChats.get(position);
         String alphabet = chat.getDisplayName();
         AssetManager am = context.getApplicationContext().getAssets();
-        Typeface face = Typeface.createFromAsset(am,
-                "Quesha.ttf");
-
-        otherChatViewHolder.txtChatMessage.setTypeface(face);
-        otherChatViewHolder.txtChatMessage.setTextSize(TypedValue.COMPLEX_UNIT_SP, 24);
+        // Typeface face = Typeface.createFromAsset(am,
+        //         "Quesha.ttf");
+//
+        // otherChatViewHolder.txtChatMessage.setTypeface(face);
+        otherChatViewHolder.txtChatMessage.setTextSize(TypedValue.COMPLEX_UNIT_SP, 18);
         otherChatViewHolder.txtChatMessage.setText(chat.getMessage());
         Gfg gfg = new Gfg();
         String firstLetters = gfg.firstLetterWord(alphabet);
 
         otherChatViewHolder.txtUserAlphabet.setText(firstLetters);
-        String time =chat.getHourMinute().substring(11,16);
+        String time = chat.getHourMinute().substring(11, 16);
         if (Integer.parseInt(time.substring(0, 2)) > 12) {
             time = time.concat(" PM");
         } else {
@@ -134,30 +132,57 @@ public class ChatRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
     }
 
 
-    private static class MyChatViewHolder extends RecyclerView.ViewHolder {
+    public static class MyChatViewHolder extends RecyclerView.ViewHolder {
         private TextView txtChatMessage, myTime;
+
 
 
         public MyChatViewHolder(View itemView) {
             super(itemView);
             txtChatMessage = itemView.findViewById(R.id.message_body_mine);
             myTime = itemView.findViewById(R.id.time_mine);
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    int clicks = 0;
+                    if (clicks / 2 != 0) {
+                        myTime.setVisibility(View.VISIBLE);
+                    } else {
+                        myTime.setVisibility(View.GONE);
+                    }
+                    clicks++;
+                }
+            });
+
 
 
         }
+
+
     }
 
 
-    private static class OtherChatViewHolder extends RecyclerView.ViewHolder {
+    public class OtherChatViewHolder extends RecyclerView.ViewHolder {
         private TextView txtChatMessage, txtUserAlphabet, theirTime;
 
 
         public OtherChatViewHolder(View itemView) {
             super(itemView);
+
+
             txtChatMessage = itemView.findViewById(R.id.message_body_sender);
             txtUserAlphabet = itemView.findViewById(R.id.name_sender);
             theirTime = itemView.findViewById(R.id.time_their);
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    theirTime.setVisibility(View.VISIBLE);
+                }
+            });
 
         }
+
+
     }
+
 }

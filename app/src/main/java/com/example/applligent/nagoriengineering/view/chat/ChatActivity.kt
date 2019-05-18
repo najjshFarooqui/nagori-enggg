@@ -3,7 +3,6 @@ package com.example.applligent.nagoriengineering.view.chat
 import android.content.Intent
 import android.os.Bundle
 import android.support.design.widget.FloatingActionButton
-import android.support.v4.content.ContextCompat
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
@@ -37,6 +36,7 @@ class ChatActivity : AppCompatActivity() {
     lateinit var listOfMessage: RecyclerView
     lateinit var fab_bottom: ImageView
     lateinit var lastSeen: LastSeen
+
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -114,11 +114,11 @@ class ChatActivity : AppCompatActivity() {
 
         val actionBar = supportActionBar
         if (actionBar != null) {
-            actionBar.title = "CHATS"
+            actionBar.title = "chats"
             actionBar.setHomeAsUpIndicator(R.drawable.ic_arrow_back)
             actionBar.setDisplayShowTitleEnabled(true)
             actionBar.setDisplayHomeAsUpEnabled(true)
-            actionBar.setBackgroundDrawable(ContextCompat.getDrawable(applicationContext, R.drawable.toolbar_chat))
+
         }
 
 

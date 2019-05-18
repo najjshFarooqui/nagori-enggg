@@ -2,11 +2,10 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:background="#FFF"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#FFF"
     tools:context=".view.chat.ChatActivity">
-
 
 
     <android.support.v7.widget.RecyclerView
@@ -28,7 +27,7 @@
         android:layout_marginRight="16dp"
         android:layout_marginBottom="80dp"
         android:alpha="0.2"
-        android:background="@drawable/circle_name"></View>
+        android:background="@drawable/new_circle" />
 
     <ImageView
         android:id="@+id/fab_bottom"
@@ -41,30 +40,31 @@
         android:layout_marginRight="22dp"
         android:layout_marginBottom="85dp"
         android:alpha="0.2"
-        android:src="@drawable/bottom_arrow" />
+        android:src="@drawable/ic_keyboard_arrow_down_black_24dp" />
 
 
     <EditText
         android:id="@+id/input_message"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="8dp"
-
         android:layout_alignParentBottom="true"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginBottom="12dp"
         android:layout_toLeftOf="@+id/fab"
         android:background="@drawable/edittext"
         android:hint="type a message"
+        android:minHeight="40dp"
         android:paddingLeft="20dp"
         android:paddingTop="5dp"
         android:paddingRight="20dp"
-        android:paddingBottom="5dp"
-        android:minHeight="48dp" />
+        android:paddingBottom="5dp" />
 
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/fab"
         android:layout_width="wrap_content"
-        android:layout_height="64dp"
+        android:layout_height="40dp"
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
         android:layout_marginStart="8dp"

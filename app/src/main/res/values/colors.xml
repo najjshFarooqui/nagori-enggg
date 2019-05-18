@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#40A798</color>
-    <color name="colorPrimaryDark">#226B80</color>
+    <color name="colorPrimary">#E74B59</color>
+    <color name="colorPrimaryDark">#b43f3f</color>
     <color name="colorAccent">#FFF</color>
     <color name="light">#ece6e6</color>
-    <color name="divider">#BDBDBD</color>
+    <color name="divider">#8e8686</color>
     <color name="primary_text">#212121</color>
     <color name="white">#FFF</color>
     <color name="list_background">#EEEEEE</color>
@@ -37,6 +37,11 @@
     <color name="light_pink">#FFB6C1</color>
     <color name="hot_pink">#FF69B4</color>
     <color name="black">#000</color>
+
+    <color name="red">#E74B59</color>
+    <color name="pink">#EB3B8B</color>
+
+    <color name="their_msg">#F0F0F0</color>
 
 
 </resources>

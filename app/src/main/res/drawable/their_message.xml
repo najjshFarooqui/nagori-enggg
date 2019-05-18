@@ -6,6 +6,6 @@
         android:radius="10dp"
         android:topLeftRadius="2dp" />
 
-    <solid android:color="@color/table_row" />
+    <solid android:color="@color/their_msg" />
 </shape>
 
