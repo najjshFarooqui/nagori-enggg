@@ -2,9 +2,7 @@ package com.example.applligent.nagoriengineering.view.chat
 
 import android.app.ProgressDialog
 import android.content.Intent
-
 import android.os.Bundle
-import android.support.v7.app.ActionBar
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.Toolbar
 import android.text.TextUtils
@@ -12,7 +10,6 @@ import android.util.Log
 import android.view.MenuItem
 import android.view.View
 import android.widget.Toast
-
 import com.example.applligent.nagoriengineering.GeneralPreference
 import com.example.applligent.nagoriengineering.MyNagoriApplication
 import com.example.applligent.nagoriengineering.R
@@ -37,7 +34,7 @@ class RegisterActivity : AppCompatActivity() {
         setContentView(R.layout.activity_register)
         val actionBar = supportActionBar
         if (actionBar != null) {
-            actionBar.setTitle("Register Yourself")
+            actionBar.title = "Register Yourself"
             actionBar.setHomeAsUpIndicator(R.drawable.ic_arrow_back)
             actionBar.setDisplayShowTitleEnabled(true)
             actionBar.setDisplayHomeAsUpEnabled(true)
@@ -49,9 +46,9 @@ class RegisterActivity : AppCompatActivity() {
 
         button.setOnClickListener(View.OnClickListener {
             val user = User()
-            val userName = etName.getText().toString()
-            val userEmail = etEmail.getText().toString()
-            val userPassword = etPassword.getText().toString()
+            val userName = etName.text.toString()
+            val userEmail = etEmail.text.toString()
+            val userPassword = etPassword.text.toString()
             if (!TextUtils.isEmpty(userName) || !TextUtils.isEmpty(userEmail) || !TextUtils.isEmpty(userPassword)) {
                 progressBar!!.setTitle("Registration progress")
                 progressBar!!.setMessage("please wait")
@@ -93,7 +90,7 @@ class RegisterActivity : AppCompatActivity() {
                             if (task.isSuccessful) {
                                 progressBar!!.dismiss()
                                 registerDao.insert(user)
-                                startActivity(Intent(this@RegisterActivity, ChatActivityNew::class.java).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK))
+                                startActivity(Intent(this@RegisterActivity, ChatActivity::class.java).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK))
                                 finish()
                             }
                         }

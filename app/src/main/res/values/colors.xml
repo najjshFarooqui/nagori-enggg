@@ -22,7 +22,7 @@
 
     <color name="dark_red">#FFFD0000</color>
 
-    <color name="light_red">#f16969</color>
+    <color name="light_red">#CF7676</color>
 
     <color name="chat_beg">#E1FFC7</color>
 
@@ -34,8 +34,9 @@
     <color name="three">#40A798</color>
     <color name="four">#FFEBD3</color>
 
-
-
+    <color name="light_pink">#FFB6C1</color>
+    <color name="hot_pink">#FF69B4</color>
+    <color name="black">#000</color>
 
 
 </resources>

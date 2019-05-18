@@ -7,9 +7,9 @@
     <!-- Border Color -->
     <stroke
         android:width="2dp"
-        android:color="@color/light_red" />
+        android:color="@color/hot_pink" />
 
     <!-- Round Corners -->
-    <corners android:radius="24dp" />
+    <corners android:radius="22dp" />
 
 </shape>

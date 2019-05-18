@@ -3,6 +3,7 @@ package com.example.applligent.nagoriengineering.view.chat
 import android.content.Intent
 import android.os.Bundle
 import android.support.design.widget.FloatingActionButton
+import android.support.v4.content.ContextCompat
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
@@ -22,6 +23,7 @@ import com.example.applligent.nagoriengineering.model.LastSeen
 import com.example.applligent.nagoriengineering.view.StartActivity
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
+import kotlinx.android.synthetic.main.activity_chat.*
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -94,8 +96,11 @@ class ChatActivity : AppCompatActivity() {
 
                 if (dy < 0) {
                     fab_bottom.visibility = View.VISIBLE
+                    view_fab.visibility = View.VISIBLE
+
                 } else if (dy > 0) {
                     fab_bottom.visibility = View.GONE
+                    view_fab.visibility = View.GONE
                 }
             }
 
@@ -113,6 +118,7 @@ class ChatActivity : AppCompatActivity() {
             actionBar.setHomeAsUpIndicator(R.drawable.ic_arrow_back)
             actionBar.setDisplayShowTitleEnabled(true)
             actionBar.setDisplayHomeAsUpEnabled(true)
+            actionBar.setBackgroundDrawable(ContextCompat.getDrawable(applicationContext, R.drawable.toolbar_chat))
         }
 
 
@@ -199,14 +205,16 @@ class ChatActivity : AppCompatActivity() {
     override fun onStop() {
         super.onStop()
         GeneralPreference.setFlag(applicationContext!!, "farooqui")
+        if (mAuth.currentUser != null) {
 
-        reference = FirebaseDatabase.getInstance().reference.child("users")
-        val sdf = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss")
-        lastSeen = LastSeen()
-        lastSeen.time = sdf.format(Date())
-        lastSeen.active = ""
-        lastSeen.name = mAuth.currentUser!!.email
-        reference.push().setValue(lastSeen)
+            reference = FirebaseDatabase.getInstance().reference.child("users")
+            val sdf = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss")
+            lastSeen = LastSeen()
+            lastSeen.time = sdf.format(Date())
+            lastSeen.active = ""
+            lastSeen.name = mAuth.currentUser!!.email
+            reference.push().setValue(lastSeen)
+        }
 
     }
 }

@@ -1,14 +1,18 @@
 package com.example.applligent.nagoriengineering;
 
 import android.content.Context;
+import android.content.res.AssetManager;
+import android.graphics.Typeface;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
+import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.example.applligent.nagoriengineering.model.Chat;
+import com.example.applligent.nagoriengineering.service.Gfg;
 import com.google.firebase.auth.FirebaseAuth;
 
 import java.util.List;
@@ -68,12 +72,12 @@ public class ChatRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
 
     private void configureMyChatViewHolder(MyChatViewHolder myChatViewHolder, int position) {
         Chat chat = mChats.get(position);
-
-
-
-
-
+        AssetManager am = context.getApplicationContext().getAssets();
+        Typeface face = Typeface.createFromAsset(am,
+                "Champagne & Limousines.ttf");
+        myChatViewHolder.txtChatMessage.setTypeface(face);
         myChatViewHolder.txtChatMessage.setText(chat.getMessage());
+        myChatViewHolder.txtChatMessage.setTextSize(TypedValue.COMPLEX_UNIT_SP, 16);
         String time = chat.getHourMinute().substring(11,16);
         if (Integer.parseInt(time.substring(0, 2)) > 12) {
             time = time.concat(" PM");
@@ -84,11 +88,21 @@ public class ChatRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
 
     }
 
+
     private void configureOtherChatViewHolder(OtherChatViewHolder otherChatViewHolder, int position) {
         Chat chat = mChats.get(position);
         String alphabet = chat.getDisplayName();
+        AssetManager am = context.getApplicationContext().getAssets();
+        Typeface face = Typeface.createFromAsset(am,
+                "Quesha.ttf");
+
+        otherChatViewHolder.txtChatMessage.setTypeface(face);
+        otherChatViewHolder.txtChatMessage.setTextSize(TypedValue.COMPLEX_UNIT_SP, 24);
         otherChatViewHolder.txtChatMessage.setText(chat.getMessage());
-        otherChatViewHolder.txtUserAlphabet.setText(alphabet);
+        Gfg gfg = new Gfg();
+        String firstLetters = gfg.firstLetterWord(alphabet);
+
+        otherChatViewHolder.txtUserAlphabet.setText(firstLetters);
         String time =chat.getHourMinute().substring(11,16);
         if (Integer.parseInt(time.substring(0, 2)) > 12) {
             time = time.concat(" PM");
